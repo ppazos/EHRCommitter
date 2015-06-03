@@ -25,6 +25,23 @@ class EhrformTagLib {
        out << this."$method"(name, defaultValue)
     }
     
+    def displayINTEGER(String name, String defaultValue) {
+    
+       if (defaultValue == "RANDOM")
+       {
+          defaultValue = intGenerator()
+       }
+       else if (defaultValue == "EMPTY")
+       {
+          defaultValue = 1
+       }
+    
+       """<label>${name}
+       <input type=\"number\" name=\"${name}\" value=\"${defaultValue}\" />
+       </label><br />
+       """
+    }
+    
     def displaySTRING(String name, String defaultValue) {
     
        if (defaultValue == "RANDOM")
@@ -116,5 +133,9 @@ class EhrformTagLib {
        new Random().with {
          (1..n).collect { alphabet[ nextInt( alphabet.length() ) ] }.join()
        }
+    }
+    
+    def intGenerator = {
+       new Random( System.currentTimeMillis() ).nextInt()
     }
 }

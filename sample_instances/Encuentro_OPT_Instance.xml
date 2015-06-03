@@ -187,7 +187,7 @@
                    <value>Sistólica</value>
                  </name>
                  <value xsi:type="DV_QUANTITY">
-                   <magnitude>36346</magnitude>
+                   <magnitude>120</magnitude>
                    <units>mm[Hg]</units>
                  </value>
                </items>
@@ -196,7 +196,7 @@
                    <value>Diastólica</value>
                  </name>
                  <value xsi:type="DV_QUANTITY">
-                   <magnitude>34534</magnitude>
+                   <magnitude>90</magnitude>
                    <units>mm[Hg]</units>
                  </value>
                </items>
@@ -205,7 +205,7 @@
                    <value>Comentario</value>
                  </name>
                  <value xsi:type="DV_TEXT">
-                   <value>34534</value>
+                   <value>Este es un comentario de prueba</value>
                  </value>
                </items>
              </data>
