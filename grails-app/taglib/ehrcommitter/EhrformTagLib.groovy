@@ -128,6 +128,17 @@ class EhrformTagLib {
        """
     }
     
+    def displayDURATION(String name, String defaultValue) {
+       
+       if (defaultValue == "ANY")
+          defaultValue = "PT30M"
+       
+       $/<label>${name}
+       <input type="text" name="${name}" value="${defaultValue}" pattern="P(?=\w*\d)(?:\d+Y|Y)?(?:\d+M|M)?(?:\d+W|W)?(?:\d+D|D)?(?:T(?:\d+H|H)?(?:\d+M|M)?(?:\d+(?:\­.\d{1,2})?S|S)?)?" />
+       </label><br />
+       /$
+    }
+    
     // generator( (('A'..'Z')+('0'..'9')).join(), 9 )
     def generator = { String alphabet, int n ->
        new Random().with {
