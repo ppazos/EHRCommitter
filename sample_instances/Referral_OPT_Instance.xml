@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?><version xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.openehr.org/v1" xsi:type="ORIGINAL_VERSION">
+  <contribution>
+    <id xsi:type="HIER_OBJECT_ID">
+      <value>[[CONTRIBUTION:::UUID:::ANY]]</value>
+    </id>
+    <namespace>EHR::COMMON</namespace>
+    <type>CONTRIBUTION</type>
+  </contribution>
+  <commit_audit>
+    <system_id>CABOLABS_EHR</system_id>
+    <committer xsi:type="PARTY_IDENTIFIED">
+      <name>[[COMMITTER_NAME:::STRING:::Carlos]]</name>
+    </committer>
+    <time_committed>
+      <value>[[TIME_COMMITTED:::DATETIME:::NOW]]</value>
+    </time_committed>
+    <change_type>
+      <value>creation</value>
+      <defining_code>
+        <terminology_id>
+          <value>openehr</value>
+        </terminology_id>
+        <code_string>249</code_string>
+      </defining_code>
+    </change_type>
+  </commit_audit>
+  <uid>
+    <value>[[VERSION_ID:::VERSION_ID:::ANY]]</value>
+  </uid>
+  <data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" archetype_node_id="openEHR-EHR-COMPOSITION.referral.v1" xsi:type="COMPOSITION">
+    <name>
+      <value>Referral</value>
+    </name>
+    <uid xsi:type="HIER_OBJECT_ID">
+      <value>[[COMPOSITION:::UUID:::ANY]]</value>
+    </uid>
+    <archetype_details>
+      <archetype_id>
+        <value>openEHR-EHR-COMPOSITION.referral.v1</value>
+      </archetype_id>
+      <template_id>
+        <value>Referral</value>
+      </template_id>
+      <rm_version>1.0.2</rm_version>
+    </archetype_details>
+    <language>
+      <terminology_id>
+        <value>ISO_639-1</value>
+      </terminology_id>
+      <code_string>en</code_string>
+    </language>
+    <territory>
+      <terminology_id>
+        <value>ISO_3166-1</value>
+      </terminology_id>
+      <code_string>UY</code_string>
+    </territory>
+    <category>
+      <value>event</value>
+      <defining_code>
+        <terminology_id>
+          <value>openehr</value>
+        </terminology_id>
+        <code_string>443</code_string>
+      </defining_code>
+    </category>
+    <composer xsi:type="PARTY_IDENTIFIED">
+      <name>[[COMPOSER_NAME:::STRING:::Carlos]]</name>
+    </composer>
+    <context>
+      <start_time>
+        <value>20150506T215226,778-0300</value>
+      </start_time>
+      <setting>
+        <value>Hospital Montevideo</value>
+        <defining_code>
+          <terminology_id>
+            <value>openehr</value>
+          </terminology_id>
+          <code_string>229</code_string>
+        </defining_code>
+      </setting>
+      <other_context xsi:type="ITEM_TREE" archetype_node_id="at0001">
+        <name>
+          <value>@ internal @</value>
+        </name>
+        <!-- OPT specifies a slot but is not used -->
+      </other_context>
+    </context>
+    <content archetype_node_id="openEHR-EHR-INSTRUCTION.request-referral.v1" xsi:type="INSTRUCTION">
+      <name>
+        <value>Referral request</value>
+      </name>
+      <language>
+        <terminology_id>
+          <value>ISO_639-1</value>
+        </terminology_id>
+        <code_string>en</code_string>
+      </language>
+      <encoding>
+        <terminology_id>
+          <value>Unicode</value>
+        </terminology_id>
+        <code_string>UTF-8</code_string>
+      </encoding>
+      <subject xsi:type="PARTY_IDENTIFIED">
+        <external_ref>
+          <id xsi:type="HIER_OBJECT_ID">
+            <value>[[PATIENT_UID:::UUID:::FROM_SERVER]]</value>
+          </id>
+          <namespace>DEMOGRAPHIC</namespace>
+          <type>PERSON</type>
+        </external_ref>
+      </subject>
+      <protocol archetype_node_id="at0008" xsi:type="ITEM_TREE">
+        <name>
+          <value>Tree</value>
+        </name>
+        <items archetype_node_id="at0.2" xsi:type="CLUSTER">
+              <name>
+                <value>Duration</value>
+              </name>
+              <items archetype_node_id="at0.3" xsi:type="ELEMENT">
+                 <name>
+                   <value>Duration</value>
+                 </name>
+                 <value xsi:type="DV_DURATION">
+                   <!--<value>PT30M</value>-->
+                   <value>[[DURATION:::DURATION:::PT30M]]</value>
+                 </value>
+             </items>
+             <items archetype_node_id="at0.4" xsi:type="ELEMENT">
+                 <name>
+                   <value>Indefinite</value>
+                 </name>
+                 <value xsi:type="DV_BOOLEAN">
+                   <value>true</value>
+                 </value>
+             </items>
+        </items>
+      </protocol>
+      <narrative xsi:type="DV_TEXT">
+        <value>[[NARRATIVE:::STRING:::RANDOM]]</value>
+      </narrative>
+      <activities archetype_node_id="at0001">
+        <name>
+          <value>Request</value>
+        </name>
+        <description archetype_node_id="at0009" xsi:type="ITEM_TREE">
+          <name>
+            <value>Tree</value>
+          </name>
+          <items archetype_node_id="at0121" xsi:type="ELEMENT">
+              <name>
+                <value>Service requested</value>
+              </name>
+              <value xsi:type="DV_TEXT">
+                <value>[[SERVICE:::STRING:::RANDOM]]</value>
+              </value>
+          </items>
+          <items archetype_node_id="at0135" xsi:type="ELEMENT">
+              <name>
+                <value>Description of service</value>
+              </name>
+              <value xsi:type="DV_TEXT">
+                <value>[[SERVICE_DESCRIPTION:::STRING:::RANDOM]]</value>
+              </value>
+          </items>
+          <items archetype_node_id="at0062" xsi:type="ELEMENT">
+              <name>
+                <value>Reason for request</value>
+              </name>
+              <value xsi:type="DV_TEXT">
+                <value>[[REASON:::STRING:::RANDOM]]</value>
+              </value>
+          </items>
+          <items archetype_node_id="at0064" xsi:type="ELEMENT">
+              <name>
+                <value>Reason description</value>
+              </name>
+              <value xsi:type="DV_TEXT">
+                <value>[[REASON_DESRIPTION:::STRING:::RANDOM]]</value>
+              </value>
+          </items>
+          <items archetype_node_id="at0040" xsi:type="ELEMENT">
+              <name>
+                <value>Date and/or time service required</value>
+              </name>
+              <value xsi:type="DV_DATE_TIME">
+                <value>[[DATE_SERVICE_REQUIRED:::DATETIME:::NOW]]</value>
+              </value>
+          </items>
+          
+           
+        </description>
+        <timing>
+          <value>P1D</value>
+          <formalism>ISO8601</formalism>
+        </timing>
+        <action_archetype_id>a_valid_archetype_id</action_archetype_id>
+      </activities>
+    </content>
+  </data>
+  <lifecycle_state>
+    <value>completed</value>
+    <defining_code>
+      <terminology_id>
+        <value>openehr</value>
+      </terminology_id>
+      <code_string>532</code_string>
+    </defining_code>
+  </lifecycle_state>
+</version>
