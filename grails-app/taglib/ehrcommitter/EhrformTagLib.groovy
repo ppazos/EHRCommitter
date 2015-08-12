@@ -58,10 +58,10 @@ class EhrformTagLib {
           defaultValue = ""
        }
     
-       """<label><span class="label">${name}</span>
-       <textarea name=\"${name}\">${defaultValue}</textarea>
+       $/<label><span class="label">${name}</span>
+       <textarea name="${name}">${defaultValue}</textarea>
        </label><br />
-       """
+       /$
     }
     
     def displayDATE(String name, String defaultValue) {
