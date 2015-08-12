@@ -9,7 +9,14 @@
   <commit_audit>
     <system_id>CABOLABS_EHR</system_id>
     <committer xsi:type="PARTY_IDENTIFIED">
-      <name>[[COMMITTER_NAME:::STRING:::Carlos]]</name>
+      <external_ref>
+        <id xsi:type="HIER_OBJECT_ID">
+          <value>cc193f71-f5fe-438a-87f9-81ecb302eede</value>
+        </id>
+        <namespace>DEMOGRAPHIC</namespace>
+        <type>PERSON</type>
+      </external_ref>
+      <name>[[COMMITTER_NAME:::STRING:::Dr. House]]</name>
     </committer>
     <time_committed>
       <value>[[TIME_COMMITTED:::DATETIME:::NOW]]</value>
@@ -65,7 +72,14 @@
       </defining_code>
     </category>
     <composer xsi:type="PARTY_IDENTIFIED">
-      <name>[[COMPOSER_NAME:::STRING:::Carlos]]</name>
+      <external_ref>
+        <id xsi:type="HIER_OBJECT_ID">
+          <value>cc193f71-f5fe-438a-87f9-81ecb302eede</value>
+        </id>
+        <namespace>DEMOGRAPHIC</namespace>
+        <type>PERSON</type>
+      </external_ref>
+      <name>[[COMPOSER_NAME:::STRING:::Dr. House]]</name>
     </composer>
     <context>
       <start_time>
@@ -103,15 +117,7 @@
         </terminology_id>
         <code_string>UTF-8</code_string>
       </encoding>
-      <subject xsi:type="PARTY_IDENTIFIED">
-        <external_ref>
-          <id xsi:type="HIER_OBJECT_ID">
-            <value>[[PATIENT_UID:::UUID:::FROM_SERVER]]</value>
-          </id>
-          <namespace>DEMOGRAPHIC</namespace>
-          <type>PERSON</type>
-        </external_ref>
-      </subject>
+      <subject xsi:type="PARTY_SELF" />
       <protocol archetype_node_id="at0008" xsi:type="ITEM_TREE">
         <name>
           <value>Tree</value>
@@ -126,7 +132,7 @@
                  </name>
                  <value xsi:type="DV_DURATION">
                    <!--<value>PT30M</value>-->
-                   <value>[[DURATION:::DURATION:::PT30M]]</value>
+                   <value>[[REFERRAL_VALID_DURATION:::DURATION:::PT30M]]</value>
                  </value>
              </items>
              <items archetype_node_id="at0.4" xsi:type="ELEMENT">
@@ -140,7 +146,7 @@
         </items>
       </protocol>
       <narrative xsi:type="DV_TEXT">
-        <value>[[NARRATIVE:::STRING:::RANDOM]]</value>
+        <value>[[REFERRAL_NOTE:::STRING:::RANDOM]]</value>
       </narrative>
       <activities archetype_node_id="at0001">
         <name>
@@ -155,7 +161,7 @@
                 <value>Service requested</value>
               </name>
               <value xsi:type="DV_TEXT">
-                <value>[[SERVICE:::STRING:::RANDOM]]</value>
+                <value>[[SERVICE_REQUESTED:::STRING:::RANDOM]]</value>
               </value>
           </items>
           <items archetype_node_id="at0135" xsi:type="ELEMENT">
@@ -171,7 +177,7 @@
                 <value>Reason for request</value>
               </name>
               <value xsi:type="DV_TEXT">
-                <value>[[REASON:::STRING:::RANDOM]]</value>
+                <value>[[REASON_FOR_REQUEST:::STRING:::RANDOM]]</value>
               </value>
           </items>
           <items archetype_node_id="at0064" xsi:type="ELEMENT">
@@ -190,8 +196,6 @@
                 <value>[[DATE_SERVICE_REQUIRED:::DATETIME:::NOW]]</value>
               </value>
           </items>
-          
-           
         </description>
         <timing>
           <value>P1D</value>
