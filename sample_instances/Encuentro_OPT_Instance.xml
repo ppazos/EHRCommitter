@@ -9,7 +9,14 @@
   <commit_audit>
     <system_id>CABOLABS_EHR</system_id>
     <committer xsi:type="PARTY_IDENTIFIED">
-      <name>[[COMMITTER_NAME:::STRING:::Carlos]]</name>
+      <external_ref>
+        <id xsi:type="HIER_OBJECT_ID">
+          <value>cc193f71-f5fe-438a-87f9-81ecb302eede</value>
+        </id>
+        <namespace>DEMOGRAPHIC</namespace>
+        <type>PERSON</type>
+      </external_ref>
+      <name>[[COMMITTER_NAME:::STRING:::Dr. House]]</name>
     </committer>
     <time_committed>
       <value>[[TIME_COMMITTED:::DATETIME:::NOW]]</value>
@@ -65,7 +72,14 @@
       </defining_code>
     </category>
     <composer xsi:type="PARTY_IDENTIFIED">
-      <name>[[COMPOSER_NAME:::STRING:::Carlos]]</name>
+      <external_ref>
+        <id xsi:type="HIER_OBJECT_ID">
+          <value>cc193f71-f5fe-438a-87f9-81ecb302eede</value>
+        </id>
+        <namespace>DEMOGRAPHIC</namespace>
+        <type>PERSON</type>
+      </external_ref>
+      <name>[[COMPOSER_NAME:::STRING:::Dr. House]]</name>
     </composer>
     <context>
       <start_time>
@@ -103,15 +117,7 @@
         </terminology_id>
         <code_string>UTF-8</code_string>
       </encoding>
-      <subject xsi:type="PARTY_IDENTIFIED">
-        <external_ref>
-          <id xsi:type="HIER_OBJECT_ID">
-            <value>[[PATIENT_UID:::UUID:::FROM_SERVER]]</value>
-          </id>
-          <namespace>DEMOGRAPHIC</namespace>
-          <type>PERSON</type>
-        </external_ref>
-      </subject>
+      <subject xsi:type="PARTY_SELF" />
       <data archetype_node_id="at0001" xsi:type="ITEM_TREE">
         <name>
           <value>Tree</value>
@@ -143,27 +149,19 @@
         <name>
           <value>Presión arterial</value>
         </name>
-         <language>
-           <terminology_id>
-             <value>ISO_639-1</value>
-           </terminology_id>
-           <code_string>es</code_string>
-         </language>
-         <encoding>
-           <terminology_id>
-             <value>Unicode</value>
-           </terminology_id>
-           <code_string>UTF-8</code_string>
-         </encoding>
-         <subject xsi:type="PARTY_IDENTIFIED">
-           <external_ref>
-             <id xsi:type="HIER_OBJECT_ID">
-               <value>[[PATIENT_UID:::UUID:::FROM_SERVER]]</value>
-             </id>
-             <namespace>DEMOGRAPHIC</namespace>
-             <type>PERSON</type>
-           </external_ref>
-         </subject>
+        <language>
+          <terminology_id>
+            <value>ISO_639-1</value>
+          </terminology_id>
+          <code_string>es</code_string>
+        </language>
+        <encoding>
+          <terminology_id>
+            <value>Unicode</value>
+          </terminology_id>
+          <code_string>UTF-8</code_string>
+        </encoding>
+        <subject xsi:type="PARTY_SELF" />
         <data archetype_node_id="at0001" xsi:type="HISTORY">
            <name>
              <value>History</value>
@@ -232,15 +230,7 @@
         </terminology_id>
         <code_string>UTF-8</code_string>
       </encoding>
-      <subject xsi:type="PARTY_IDENTIFIED">
-        <external_ref>
-          <id xsi:type="HIER_OBJECT_ID">
-            <value>[[PATIENT_UID:::UUID:::FROM_SERVER]]</value>
-          </id>
-          <namespace>DEMOGRAPHIC</namespace>
-          <type>PERSON</type>
-        </external_ref>
-      </subject>
+      <subject xsi:type="PARTY_SELF" />
       <data archetype_node_id="at0001" xsi:type="HISTORY">
         <name>
           <value>Event Series</value>
@@ -309,16 +299,7 @@
         </terminology_id>
         <code_string>UTF-8</code_string>
       </encoding>
-      <subject xsi:type="PARTY_IDENTIFIED">
-        <external_ref>
-          <id xsi:type="HIER_OBJECT_ID">
-            <value>[[PATIENT_UID:::UUID:::FROM_SERVER]]</value>
-          </id>
-          <namespace>DEMOGRAPHIC</namespace>
-          <type>PERSON</type>
-        </external_ref>
-      </subject>
-      
+      <subject xsi:type="PARTY_SELF" />
       <protocol archetype_node_id="at0032" xsi:type="ITEM_TREE">
         <name>
           <value>Tree</value>
@@ -391,9 +372,7 @@
            </value>
         </items>
       </data>
-
     </content>
-    
   </data>
   <lifecycle_state>
     <value>completed</value>
