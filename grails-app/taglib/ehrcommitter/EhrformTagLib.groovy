@@ -29,14 +29,19 @@ class EhrformTagLib {
     
        if (defaultValue == "RANDOM")
        {
-          defaultValue = intGenerator()
+          defaultValue = intGenerator(1000, 0) // 0..1000
        }
        else if (defaultValue == "EMPTY")
        {
           defaultValue = 1
        }
+       else if (defaultValue.startsWith('RANGE_')) // RANGE_100-150
+       {
+          def range = (defaultValue - "RANGE_").split('-').collect{ Integer.parseInt(it) }
+          defaultValue = intGenerator(range[1] - range[0], range[0]) // range[0]..range[1]
+       }
     
-       """<label>${name}
+       """<label><span class="label">${name}</span>
        <input type=\"number\" name=\"${name}\" value=\"${defaultValue}\" />
        </label><br />
        """
@@ -53,7 +58,7 @@ class EhrformTagLib {
           defaultValue = ""
        }
     
-       """<label>${name}
+       """<label><span class="label">${name}</span>
        <textarea name=\"${name}\">${defaultValue}</textarea>
        </label><br />
        """
@@ -72,7 +77,7 @@ class EhrformTagLib {
        else
           defaultValue = ''
           
-       """<label>${name}
+       """<label><span class="label">${name}</span>
        <input type=\"date\" name=\"${name}\" value=\"${defaultValue}\" />
        </label><br />
        """
@@ -97,7 +102,7 @@ class EhrformTagLib {
           defaultValueTime = ''
        }
     
-       """<label>${name}
+       """<label><span class="label">${name}</span>
        <input type=\"date\" name=\"${name}\" value=\"${defaultValueDate}\" />
        <input type=\"time\" name=\"${name}\" value=\"${defaultValueTime}\" />
        </label><br />
@@ -109,7 +114,7 @@ class EhrformTagLib {
        if (defaultValue == "ANY")
           defaultValue = UUID.randomUUID().toString()
        
-       """<label>${name}
+       """<label><span class="label">${name}</span>
        <input type=\"text\" name=\"${name}\" value=\"${defaultValue}\" />
        </label><br />
        """
@@ -122,7 +127,7 @@ class EhrformTagLib {
        if (defaultValue == "ANY")
           defaultValue = UUID.randomUUID().toString() +"::EMR::1"
        
-       """<label>${name}
+       """<label><span class="label">${name}</span>
        <input type=\"text\" name=\"${name}\" value=\"${defaultValue}\" />
        </label><br />
        """
@@ -133,7 +138,7 @@ class EhrformTagLib {
        if (defaultValue == "ANY")
           defaultValue = "PT30M"
        
-       $/<label>${name}
+       $/<label><span class="label">${name}</span>
        <input type="text" name="${name}" value="${defaultValue}" pattern="P(?=\w*\d)(?:\d+Y|Y)?(?:\d+M|M)?(?:\d+W|W)?(?:\d+D|D)?(?:T(?:\d+H|H)?(?:\d+M|M)?(?:\d+(?:\­.\d{1,2})?S|S)?)?" />
        </label><br />
        /$
@@ -146,7 +151,7 @@ class EhrformTagLib {
        }
     }
     
-    def intGenerator = {
-       new Random( System.currentTimeMillis() ).nextInt()
+    def intGenerator = { n, base ->
+       new Random( System.currentTimeMillis() ).nextInt( n+1 ) + base
     }
 }
