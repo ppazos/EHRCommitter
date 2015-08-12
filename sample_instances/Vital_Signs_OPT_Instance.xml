@@ -271,7 +271,7 @@
                 </defining_code>
               </name>
               <value xsi:type="DV_QUANTITY">
-                <magnitude>[[HEART_RATE:::INTEGER:::RANGE_50-100]]</magnitude>
+                <magnitude>[[HEART_RATE:::INTEGER:::RANGE_40-95]]</magnitude>
                 <units>/min</units>
               </value>
             </items>
