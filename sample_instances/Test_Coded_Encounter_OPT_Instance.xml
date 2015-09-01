@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?><version xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.openehr.org/v1" xsi:type="ORIGINAL_VERSION">
+  <contribution>
+    <id xsi:type="HIER_OBJECT_ID">
+      <value>[[CONTRIBUTION:::UUID:::ANY]]</value>
+    </id>
+    <namespace>EHR::COMMON</namespace>
+    <type>CONTRIBUTION</type>
+  </contribution>
+  <commit_audit>
+    <system_id>CABOLABS_EHR</system_id>
+    <committer xsi:type="PARTY_IDENTIFIED">
+      <external_ref>
+        <id xsi:type="HIER_OBJECT_ID">
+          <value>cc193f71-f5fe-438a-87f9-81ecb302eede</value>
+        </id>
+        <namespace>DEMOGRAPHIC</namespace>
+        <type>PERSON</type>
+      </external_ref>
+      <name>[[COMMITTER_NAME:::STRING:::Dr. House]]</name>
+    </committer>
+    <time_committed>
+      <value>[[TIME_COMMITTED:::DATETIME:::NOW]]</value>
+    </time_committed>
+    <change_type>
+      <value>creation</value>
+      <defining_code>
+        <terminology_id>
+          <value>openehr</value>
+        </terminology_id>
+        <code_string>249</code_string>
+      </defining_code>
+    </change_type>
+  </commit_audit>
+  <uid>
+    <value>[[VERSION_ID:::VERSION_ID:::ANY]]</value>
+  </uid>
+  <data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" archetype_node_id="openEHR-EHR-COMPOSITION.registro_itserver.v1" xsi:type="COMPOSITION">
+    <name>
+      <value>Registro itserver</value>
+    </name>
+    <uid xsi:type="HIER_OBJECT_ID">
+      <value>[[COMPOSITION:::UUID:::ANY]]</value>
+    </uid>
+    <archetype_details>
+      <archetype_id>
+        <value>openEHR-EHR-COMPOSITION.registro_itserver.v1</value>
+      </archetype_id>
+      <template_id>
+        <value>Registro itserver</value>
+      </template_id>
+      <rm_version>1.0.2</rm_version>
+    </archetype_details>
+    <language>
+      <terminology_id>
+        <value>ISO_639-1</value>
+      </terminology_id>
+      <code_string>en</code_string>
+    </language>
+    <territory>
+      <terminology_id>
+        <value>ISO_3166-1</value>
+      </terminology_id>
+      <code_string>UY</code_string>
+    </territory>
+    <category>
+      <value>event</value>
+      <defining_code>
+        <terminology_id>
+          <value>openehr</value>
+        </terminology_id>
+        <code_string>443</code_string>
+      </defining_code>
+    </category>
+    <composer xsi:type="PARTY_IDENTIFIED">
+      <external_ref>
+        <id xsi:type="HIER_OBJECT_ID">
+          <value>cc193f71-f5fe-438a-87f9-81ecb302eede</value>
+        </id>
+        <namespace>DEMOGRAPHIC</namespace>
+        <type>PERSON</type>
+      </external_ref>
+      <name>[[COMPOSER_NAME:::STRING:::Dr. House]]</name>
+    </composer>
+    <context>
+      <start_time>
+        <value>[[COMPOSITION_DATE:::DATETIME:::NOW]]</value>
+      </start_time>
+      <setting>
+        <value>Hospital Montevideo</value>
+        <defining_code>
+          <terminology_id>
+            <value>openehr</value>
+          </terminology_id>
+          <code_string>229</code_string>
+        </defining_code>
+      </setting>
+      <other_context xsi:type="ITEM_TREE" archetype_node_id="at0001">
+        <name>
+          <value>@ internal @</value>
+        </name>
+        <!-- OPT specifies a slot but is not used -->
+      </other_context>
+    </context>
+    <content archetype_node_id="openEHR-EHR-SECTION.seccion_general.v1" xsi:type="SECTION">
+       <name>
+         <value>Medical History</value>
+       </name>
+       <items archetype_node_id="openEHR-EHR-EVALUATION.problem_diagnosis-problem_diagnosis_coded.v1" xsi:type="EVALUATION">
+         <name>
+           <value>Problem/Diagnosis</value>
+         </name>
+         <language>
+           <terminology_id>
+             <value>ISO_639-1</value>
+           </terminology_id>
+           <code_string>en</code_string>
+         </language>
+         <encoding>
+           <terminology_id>
+             <value>Unicode</value>
+           </terminology_id>
+           <code_string>UTF-8</code_string>
+         </encoding>
+         <subject xsi:type="PARTY_SELF" />
+         <data archetype_node_id="at0001" xsi:type="ITEM_TREE">
+           <name>
+             <value>Tree</value>
+           </name>
+           <items archetype_node_id="at0002.1" xsi:type="ELEMENT">
+              <name>
+                <value>Name of problem/diagnosis</value>
+              </name>
+              <value xsi:type="DV_CODED_TEXT">
+                 <value>Cut of knee</value>
+                 <defining_code>
+                     <terminology_id>
+                       <value>SNOMED-CT</value>
+                     </terminology_id>
+                     <code_string>283434009</code_string>
+                 </defining_code>
+              </value>
+           </items>
+         </data>
+       </items>
+       <items archetype_node_id="openEHR-EHR-ACTION.procedure-coded_name.v1" xsi:type="ACTION">
+         <name>
+           <value>Procedure</value>
+         </name>
+         <language>
+           <terminology_id>
+             <value>ISO_639-1</value>
+           </terminology_id>
+           <code_string>en</code_string>
+         </language>
+         <encoding>
+           <terminology_id>
+             <value>Unicode</value>
+           </terminology_id>
+           <code_string>UTF-8</code_string>
+         </encoding>
+         <subject xsi:type="PARTY_SELF" />
+         <time xsi:type="DV_DATE_TIME">
+           <value>[[PROCEDURE1_TIME:::DATETIME:::NOW]]</value>
+         </time>
+         <description archetype_node_id="at0001" xsi:type="ITEM_TREE">
+           <name>
+             <value>Tree</value>
+           </name>
+           <items archetype_node_id="at0002.1" xsi:type="ELEMENT">
+              <name>
+                <value>Name of procedure</value>
+              </name>
+              <value xsi:type="DV_CODED_TEXT">
+                 <value>Acne surgery</value>
+                 <defining_code>
+                     <terminology_id>
+                       <value>SNOMED-CT</value>
+                     </terminology_id>
+                     <code_string>33834001</code_string>
+                 </defining_code>
+              </value>
+           </items>
+         </description>
+         <ism_transition>
+           <current_state>
+             <value>Procedure completed</value>
+             <defining_code>
+               <terminology_id>
+                 <value>local</value>
+               </terminology_id>
+               <code_string>at0043</code_string>
+             </defining_code>
+           </current_state>
+         </ism_transition>
+       </items>
+    </content>
+    <content archetype_node_id="openEHR-EHR-SECTION.seccion_general.v1" xsi:type="SECTION">
+      <name>
+        <value>Current episode</value>
+      </name>
+      <items archetype_node_id="openEHR-EHR-EVALUATION.reason_for_encounter.v1" xsi:type="EVALUATION">
+         <name>
+           <value>Reason for encounter</value>
+         </name>
+         <language>
+           <terminology_id>
+             <value>ISO_639-1</value>
+           </terminology_id>
+           <code_string>en</code_string>
+         </language>
+         <encoding>
+           <terminology_id>
+             <value>Unicode</value>
+           </terminology_id>
+           <code_string>UTF-8</code_string>
+         </encoding>
+         <subject xsi:type="PARTY_SELF" />
+         <data archetype_node_id="at0001" xsi:type="ITEM_TREE">
+           <name>
+             <value>Tree</value>
+           </name>
+           <items archetype_node_id="at0004" xsi:type="ELEMENT">
+              <name>
+                <value>Presented problem</value>
+              </name>
+              <value xsi:type="DV_CODED_TEXT">
+                 <value>Pain</value>
+                 <defining_code>
+                     <terminology_id>
+                       <value>SNOMED-CT</value>
+                     </terminology_id>
+                     <code_string>22253000</code_string>
+                 </defining_code>
+              </value>
+           </items>
+         </data>
+       </items>
+      <items archetype_node_id="openEHR-EHR-EVALUATION.problem_diagnosis-problem_diagnosis_coded.v1" xsi:type="EVALUATION">
+         <name>
+           <value>Problem/Diagnosis</value>
+         </name>
+         <language>
+           <terminology_id>
+             <value>ISO_639-1</value>
+           </terminology_id>
+           <code_string>en</code_string>
+         </language>
+         <encoding>
+           <terminology_id>
+             <value>Unicode</value>
+           </terminology_id>
+           <code_string>UTF-8</code_string>
+         </encoding>
+         <subject xsi:type="PARTY_SELF" />
+         <data archetype_node_id="at0001" xsi:type="ITEM_TREE">
+           <name>
+             <value>Tree</value>
+           </name>
+           <items archetype_node_id="at0002.1" xsi:type="ELEMENT">
+              <name>
+                <value>Name of problem/diagnosis</value>
+              </name>
+              <value xsi:type="DV_CODED_TEXT">
+                 <value>Cut of knee</value>
+                 <defining_code>
+                     <terminology_id>
+                       <value>SNOMED-CT</value>
+                     </terminology_id>
+                     <code_string>283434009</code_string>
+                 </defining_code>
+              </value>
+           </items>
+         </data>
+       </items>
+      <items archetype_node_id="openEHR-EHR-ACTION.procedure-coded_name.v1" xsi:type="ACTION">
+         <name>
+           <value>Procedure</value>
+         </name>
+         <language>
+           <terminology_id>
+             <value>ISO_639-1</value>
+           </terminology_id>
+           <code_string>en</code_string>
+         </language>
+         <encoding>
+           <terminology_id>
+             <value>Unicode</value>
+           </terminology_id>
+           <code_string>UTF-8</code_string>
+         </encoding>
+         <subject xsi:type="PARTY_SELF" />
+         <time xsi:type="DV_DATE_TIME">
+           <value>[[PROCEDURE2_TIME:::DATETIME:::NOW]]</value>
+         </time>
+         <description archetype_node_id="at0001" xsi:type="ITEM_TREE">
+           <name>
+             <value>Tree</value>
+           </name>
+           <items archetype_node_id="at0002.1" xsi:type="ELEMENT">
+              <name>
+                <value>Name of procedure</value>
+              </name>
+              <value xsi:type="DV_CODED_TEXT">
+                 <value>Acne surgery</value>
+                 <defining_code>
+                     <terminology_id>
+                       <value>SNOMED-CT</value>
+                     </terminology_id>
+                     <code_string>33834001</code_string>
+                 </defining_code>
+              </value>
+           </items>
+         </description>
+         <ism_transition>
+           <current_state>
+             <value>Procedure completed</value>
+             <defining_code>
+               <terminology_id>
+                 <value>local</value>
+               </terminology_id>
+               <code_string>at0043</code_string>
+             </defining_code>
+           </current_state>
+         </ism_transition>
+       </items>
+    </content>
+  </data>
+  <lifecycle_state>
+    <value>completed</value>
+    <defining_code>
+      <terminology_id>
+        <value>openehr</value>
+      </terminology_id>
+      <code_string>532</code_string>
+    </defining_code>
+  </lifecycle_state>
+</version>
