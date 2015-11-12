@@ -2,7 +2,7 @@ package com.cabolabs
 
 import grails.util.Holders
 import groovyx.net.http.*
-import static groovyx.net.http.ContentType.URLENC
+import static groovyx.net.http.ContentType.XML
 import java.text.SimpleDateFormat
 
 class CommitterController {
@@ -168,6 +168,7 @@ class CommitterController {
    private String commit(String xml, String patient_uid, String committer_name) {
    
       def ehr = new RESTClient(config.server.protocol + config.server.ip +':'+ config.server.port + config.server.path)
+      
       def res
       def ehrId
       try
@@ -195,22 +196,31 @@ class CommitterController {
       
       try
       {
+         /*
          def rest_params = [
            versions: [xml], // commit one version
            ehrId: ehrId,
            auditSystemId: 'EMR',
            auditCommitter: committer_name
          ]
-         
-         /*
-         params['ehrId'] = ehrId
-         params['auditSystemId'] = 'EMR'
-         params['auditCommitter'] = committer_name
          */
          
+         // remove XML declaration
+         xml = xml.replace('<?xml version="1.0" encoding="UTF-8"?>', '')
+         xml = '<versions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.openehr.org/v1">'+ xml +'</versions>'
+         
          // Sin URLENC da error null pointer exception sin mas datos... no se porque es. PREGUNTAR!
-         res = ehr.post( path:'rest/commit', body:rest_params, requestContentType: URLENC ) // query:[ehrId:ehrId] si es post creo que no acepta query
-            
+         //res = ehr.post( path:'rest/commit', body:rest_params, requestContentType: URLENC ) // query:[ehrId:ehrId] si es post creo que no acepta query
+         res = ehr.post(
+            path:'rest/commit',
+            requestContentType: XML,
+            query:  [
+               ehrId: ehrId,
+               auditSystemId: 'EMR',
+               auditCommitter: committer_name
+            ],
+            body: xml
+         )
          /*
           * result {
                type {
