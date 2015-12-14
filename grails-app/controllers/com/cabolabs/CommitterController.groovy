@@ -170,12 +170,12 @@ class CommitterController {
       def ehr = new RESTClient(config.server.protocol + config.server.ip +':'+ config.server.port + config.server.path)
       
       def res
-      def ehrId
+      def ehrUid
       try
       {
          res = ehr.get( path:'rest/ehrForSubject', query:[subjectUid:patient_uid, format:'json'] )
          
-         ehrId = res.data.ehrId
+         ehrUid = res.data.uid
       }
       catch (Exception e)
       {
@@ -192,14 +192,14 @@ class CommitterController {
          return e.message
       }
 
-      println "ehrId: $ehrId"
+      println "ehrUid: $ehrUid"
       
       try
       {
          /*
          def rest_params = [
            versions: [xml], // commit one version
-           ehrId: ehrId,
+           ehrUid: ehrUid,
            auditSystemId: 'EMR',
            auditCommitter: committer_name
          ]
@@ -210,12 +210,11 @@ class CommitterController {
          xml = '<versions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.openehr.org/v1">'+ xml +'</versions>'
          
          // Sin URLENC da error null pointer exception sin mas datos... no se porque es. PREGUNTAR!
-         //res = ehr.post( path:'rest/commit', body:rest_params, requestContentType: URLENC ) // query:[ehrId:ehrId] si es post creo que no acepta query
          res = ehr.post(
             path:'rest/commit',
             requestContentType: XML,
             query:  [
-               ehrId: ehrId,
+               ehrUid: ehrUid,
                auditSystemId: 'EMR',
                auditCommitter: committer_name
             ],
