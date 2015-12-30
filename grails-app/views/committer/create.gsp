@@ -47,7 +47,7 @@
       </g:each>
       
       <div class="buttons">
-        <g:link action="list">Cancel</g:link>
+        <g:link action="index">Cancel</g:link>
         <g:submitButton name="save" value="Save" />
       </div>
       

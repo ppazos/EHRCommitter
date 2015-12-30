@@ -2,6 +2,7 @@ package com.cabolabs
 
 import grails.util.Holders
 import groovyx.net.http.*
+import static groovyx.net.http.ContentType.URLENC
 import static groovyx.net.http.ContentType.XML
 import java.text.SimpleDateFormat
 
@@ -12,12 +13,49 @@ class CommitterController {
    def datetime_format_openEHR = "yyyyMMdd'T'HHmmss,SSSZ" // openEHR format
    def datetime_format_html5   = "yyyy-MM-dd HH:mm:ss" // HTML5 format
 
-   def index() {
-    
-      redirect action:"list"
+   def login(String username, String password, String orgnumber)
+   {
+      if (params.doit)
+      {
+         if (!username && !password && !orgnumber)
+         {
+            flash.message = 'Please specify all the authentication values'
+            return
+         }
+         
+         // service login
+         // set token on session
+         def ehr = new RESTClient(config.server.protocol + config.server.ip +':'+ config.server.port + config.server.path)
+         try
+         {
+            // Sin URLENC da error null pointer exception sin mas datos... no se porque es. PREGUNTAR!
+            def res = ehr.post(
+               path:'rest/login',
+               requestContentType: URLENC,
+               body: [username: username, password: password, organization: orgnumber]
+            )
+            
+            //println "res: " + res.responseData
+            //println "res: " + res.responseData.token
+            
+            session.token = res.responseData.token
+            
+            redirect action:'index'
+            return
+         }
+         catch (Exception e)
+         {
+            // FIXME: log a disco
+            println "except 2:" + e.message
+            e.printStackTrace(System.out)
+            println "3"
+            flash.message = e.message
+         }
+
+      }
    }
     
-   def list() {
+   def index() {
     
        def path = Holders.config.ehr.instance_repo
        
@@ -53,7 +91,7 @@ class CommitterController {
     
    private List patients()
    {
-       def patientList = []
+      def patientList = []
       
       log.info( "Consulta al EHR: "+ config.server.protocol + config.server.ip +':'+ config.server.port + config.server.path +'rest/patientList')
       
@@ -68,6 +106,7 @@ class CommitterController {
            uri.query = [ format: 'json' ]
          
            headers.'User-Agent' = 'Mozilla/5.0 Ubuntu/8.10 Firefox/3.0.4'
+           headers.'Authorization' = 'Bearer '+ session.token
            
            req.getParams().setParameter("http.connection.timeout", new Integer(10000));
            req.getParams().setParameter("http.socket.timeout", new Integer(10000));
@@ -108,7 +147,8 @@ class CommitterController {
       def xml = file.text
       
       // Para las fechas vienen el date y el time separados
-      def params2 = params.collectEntries {
+      def params2 = params.collectEntries
+      {
         if (it.value instanceof String[]) // el valor es date, time
         {
            //[(it.key): it.value[0]+" "+it.value[1]] // formato HTML5 "yyyy-MM-dd HH:mm:ss"
@@ -162,7 +202,7 @@ class CommitterController {
       
       println res
       
-      redirect action:"list" // show commit result
+      redirect action:"index" // show commit result
    }
    
    private String commit(String xml, String patient_uid, String committer_name) {
@@ -173,7 +213,9 @@ class CommitterController {
       def ehrUid
       try
       {
-         res = ehr.get( path:'rest/ehrForSubject', query:[subjectUid:patient_uid, format:'json'] )
+         res = ehr.get( path:'rest/ehrForSubject',
+                        query:[subjectUid:patient_uid, format:'json'],
+                        headers: ['Authorization': 'Bearer '+ session.token] )
          
          ehrUid = res.data.uid
       }
@@ -218,7 +260,8 @@ class CommitterController {
                auditSystemId: 'EMR',
                auditCommitter: committer_name
             ],
-            body: xml
+            body: xml,
+            headers: ['Authorization': 'Bearer '+ session.token]
          )
          /*
           * result {

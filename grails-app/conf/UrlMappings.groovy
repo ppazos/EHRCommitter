@@ -9,7 +9,7 @@ class UrlMappings {
 
         "/"( // por defecto va al escritorio del EHR Server
             controller: 'committer',
-            action: 'list'
+            action: 'index'
         )
         "500"(view:'/error')
 	}
