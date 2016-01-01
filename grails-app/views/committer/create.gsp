@@ -4,14 +4,8 @@
     <meta name="layout" content="main">
     <title></title>
     <style>
-      label {
-        display: block;
-      }
-      .label {
-        width: 33%;
-        display: inline-block;
-        text-align: right;
-        padding-right: 1em;
+      form {
+        text-align: left;
       }
       .buttons {
         text-align: right;
@@ -36,14 +30,15 @@
     
       <input type="hidden" name="filename" value="${file.name -".xml"}" />
     
-      <label>
-        <span class="label">Patient:</span>
-        <g:select from="${patients}" required="true" name="patient_uid" optionKey="uid" optionValue="name" noSelection="${['':'Select One...']}" />
-      </label><br />
-      <br/>
+      <div class="form-group">
+        <label for="patient_uid">Patient:</label>
+        <g:select from="${patients}" class="form-control" required="true" name="patient_uid" optionKey="uid" optionValue="name" noSelection="${['':'Select One...']}" />
+      </div>
       
       <g:each in="${tags}" status="i" var="tag">
-        <g:display tag="${tag}" />
+        <div class="form-group">
+          <g:display tag="${tag}" />
+        </div>
       </g:each>
       
       <div class="buttons">

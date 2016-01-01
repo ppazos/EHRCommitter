@@ -45,13 +45,10 @@ class CommitterController {
          }
          catch (Exception e)
          {
-            // FIXME: log a disco
-            println "except 2:" + e.message
-            e.printStackTrace(System.out)
-            println "3"
-            flash.message = e.message
+            println e.message
+            //e.printStackTrace(System.out)
+            flash.message = "Invalid credentials"
          }
-
       }
    }
     

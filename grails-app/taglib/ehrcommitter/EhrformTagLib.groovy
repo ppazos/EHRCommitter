@@ -41,9 +41,8 @@ class EhrformTagLib {
           defaultValue = intGenerator(range[1] - range[0], range[0]) // range[0]..range[1]
        }
     
-       """<label><span class="label">${name}</span>
-       <input type=\"number\" name=\"${name}\" value=\"${defaultValue}\" />
-       </label><br />
+       """<label>${name}</label>
+       <input type="number" name="${name}" value="${defaultValue}" class="form-control" />
        """
     }
     
@@ -58,9 +57,8 @@ class EhrformTagLib {
           defaultValue = ""
        }
     
-       $/<label><span class="label">${name}</span>
-       <textarea name="${name}">${defaultValue}</textarea>
-       </label><br />
+       $/<label>${name}</label>
+       <textarea name="${name}" class="form-control">${defaultValue}</textarea>
        /$
     }
     
@@ -77,9 +75,8 @@ class EhrformTagLib {
        else
           defaultValue = ''
           
-       """<label><span class="label">${name}</span>
-       <input type=\"date\" name=\"${name}\" value=\"${defaultValue}\" />
-       </label><br />
+       """<label>${name}</label><
+       <input type="date" name="${name}" value="${defaultValue}" class="form-control" />
        """
     }
     
@@ -102,10 +99,9 @@ class EhrformTagLib {
           defaultValueTime = ''
        }
     
-       """<label><span class="label">${name}</span>
-       <input type=\"date\" name=\"${name}\" value=\"${defaultValueDate}\" />
-       <input type=\"time\" name=\"${name}\" value=\"${defaultValueTime}\" />
-       </label><br />
+       """<label>${name}</label>
+       <input type="date" name="${name}" value="${defaultValueDate}" class="form-control" />
+       <input type="time" name="${name}" value="${defaultValueTime}" class="form-control" />
        """
     }
     
@@ -114,9 +110,8 @@ class EhrformTagLib {
        if (defaultValue == "ANY")
           defaultValue = UUID.randomUUID().toString()
        
-       """<label><span class="label">${name}</span>
-       <input type=\"text\" name=\"${name}\" value=\"${defaultValue}\" />
-       </label><br />
+       """<label>${name}</label>
+       <input type="text" name="${name}" value="${defaultValue}" class="form-control" />
        """
     }
     
@@ -127,9 +122,8 @@ class EhrformTagLib {
        if (defaultValue == "ANY")
           defaultValue = UUID.randomUUID().toString() +"::EMR::1"
        
-       """<label><span class="label">${name}</span>
-       <input type=\"text\" name=\"${name}\" value=\"${defaultValue}\" />
-       </label><br />
+       """<label>${name}</label>
+       <input type="text" name="${name}" value="${defaultValue}" class="form-control" />
        """
     }
     
@@ -138,9 +132,8 @@ class EhrformTagLib {
        if (defaultValue == "ANY")
           defaultValue = "PT30M"
        
-       $/<label><span class="label">${name}</span>
-       <input type="text" name="${name}" value="${defaultValue}" pattern="P(?=\w*\d)(?:\d+Y|Y)?(?:\d+M|M)?(?:\d+W|W)?(?:\d+D|D)?(?:T(?:\d+H|H)?(?:\d+M|M)?(?:\d+(?:\­.\d{1,2})?S|S)?)?" />
-       </label><br />
+       $/<label>${name}</label>
+       <input type="text" class="form-control" name="${name}" value="${defaultValue}" pattern="P(?=\w*\d)(?:\d+Y|Y)?(?:\d+M|M)?(?:\d+W|W)?(?:\d+D|D)?(?:T(?:\d+H|H)?(?:\d+M|M)?(?:\d+(?:\­.\d{1,2})?S|S)?)?" />
        /$
     }
     

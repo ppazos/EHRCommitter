@@ -1,4 +1,3 @@
-package hibernate
 
 class AuthFilters {
 

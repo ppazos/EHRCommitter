@@ -5,12 +5,12 @@
     <title></title>
   </head>
   <body>
-    <ul>
+    <div class="btn-group-vertical">
       <g:each in="${files}" status="i" var="file">
-        <li>
+         <button type="button" class="btn btn-default">
           <g:link action="create" id="${file}">${file}</g:link>
-        </li>
+        </button>
       </g:each>
-    </ul>
+    </div>
   </body>
 </html>
