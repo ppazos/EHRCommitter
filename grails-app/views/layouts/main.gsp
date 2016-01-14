@@ -41,6 +41,11 @@
 		        <img alt="CaboLabs" height="24" src="http://cabolabs.com//CaboLabs New Logo Horizontal 300dpi 421.png">
 		      </a>
 		    </div>
+		    <ul class="nav navbar-top-links navbar-right">
+            <li>
+              <g:link action="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</g:link>
+            </li>
+          </ul>
 		  </div>
 		</nav>
 		<div class="container">

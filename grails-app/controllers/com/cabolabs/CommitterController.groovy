@@ -51,6 +51,14 @@ class CommitterController {
          }
       }
    }
+   
+   def logout()
+   {
+      session.token = null
+      
+      redirect action:'login'
+      return
+   }
     
    def index() {
     
