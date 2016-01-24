@@ -75,7 +75,7 @@ class EhrformTagLib {
        else
           defaultValue = ''
           
-       """<label>${name}</label><
+       """<label>${name}</label>
        <input type="date" name="${name}" value="${defaultValue}" class="form-control" />
        """
     }
