@@ -177,6 +177,33 @@ class CommitterController {
               [(it.key): str_date_openEHR]
            }
         }
+        else if (it.key.startsWith("DVCT_")) // data comes from a coded text
+        {
+          def (text, code, terminology_id) = it.value.split("::")
+          /*
+          TBD (it.value is text::code::terminology_id)
+          
+          <value xsi:type="DV_CODED_TEXT">
+             <value>Leve</value>
+             <defining_code>
+               <terminology_id>
+                 <value>local</value>
+               </terminology_id>
+               <code_string>at0047</code_string>
+             </defining_code>
+           </value>
+          */
+          
+          [(it.key - "DVCT_"): $/<value xsi:type="DV_CODED_TEXT">
+             <value>${text}</value>
+             <defining_code>
+               <terminology_id>
+                 <value>${terminology_id}</value>
+               </terminology_id>
+               <code_string>${code}</code_string>
+             </defining_code>
+           </value>/$]
+        }
         else if (it.value == null)
         {
            [(it.key): ''] // Null for empty

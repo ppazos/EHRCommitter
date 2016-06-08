@@ -112,24 +112,38 @@
         <code_string>UTF-8</code_string>
       </encoding>
       <subject xsi:type="PARTY_SELF" />
-      <protocol xsi:type="ITEM_TREE" archetype_node_id="at0011">
+      <protocol xsi:type="ITEM_TREE" archetype_node_id="at0004">
         <name>
           <value>Tree</value>
         </name>
+        <items xsi:type="CLUSTER" archetype_node_id="at0013">
+          <name>
+            <value>Test identification</value>
+          </name>
+          <items xsi:type="ELEMENT" archetype_node_id="at0062">
+            <name>
+              <value>Placer order identifier</value>
+            </name>
+            <value xsi:type="DV_TEXT">
+              <value>[[ORDER_ID:::STRING:::RANDOM]]</value>
+            </value>
+          </items>
+          <!-- see LabResults1.opt line 1827 -->
+        </items>
       </protocol>
       <data xsi:type="HISTORY" archetype_node_id="at0001">
         <name>
           <value>history</value>
         </name>
         <origin xsi:type="DV_DATE_TIME">
-          <value>[[BP_DATE:::DATETIME:::NOW]]</value>
+          <value>[[RESULT_DATE:::DATETIME:::NOW]]</value>
         </origin>
         <events xsi:type="POINT_EVENT" archetype_node_id="at0002">
           <name>
             <value>any event</value>
           </name>
           <time xsi:type="DV_DATE_TIME">
-            <value>[[BP_TIME:::DATETIME:::NOW]]</value>
+            <value>[[RESULT_TIME:::DATETIME:::NOW]]</value>
           </time>
           <data xsi:type="ITEM_TREE" archetype_node_id="at0003">
             <name>
@@ -151,318 +165,54 @@
                 <value>haematology</value>
               </value>
             </items>
-            
-            <!-- data TBD
-            at0073  DV_CODED_TEXT
-            at0065 CLUSTER
-            at0078.2 DV_QUANTITY
-            at0078 ?
-            at0057  DV_TEXT
-            at0010  DV_MULTIMEDIA
-            
-            state TBD
-            -->
-            
-          </data>
-          <state xsi:type="ITEM_TREE" archetype_node_id="at0007">
-            <name>
-              <value>state structure</value>
-            </name>
-          </state>
-        </events>
-      </data>
-    </content>
-    <content xsi:type="OBSERVATION" archetype_node_id="openEHR-EHR-OBSERVATION.body_temperature.v1">
-      <name>
-        <value>Body temperature</value>
-      </name>
-      <language>
-        <terminology_id>
-          <value>ISO_639-1</value>
-        </terminology_id>
-        <code_string>en</code_string>
-      </language>
-      <encoding>
-        <terminology_id>
-          <value>Unicode</value>
-        </terminology_id>
-        <code_string>UTF-8</code_string>
-      </encoding>
-      <subject xsi:type="PARTY_SELF" />
-      <protocol xsi:type="ITEM_TREE" archetype_node_id="at0020">
-        <name>
-          <value>Protocol</value>
-        </name>
-      </protocol>
-      <data xsi:type="HISTORY" archetype_node_id="at0002">
-        <name>
-          <value>History</value>
-        </name>
-        <origin xsi:type="DV_DATE_TIME">
-          <value>[[TEMP_DATE:::DATETIME:::NOW]]</value>
-        </origin>
-        <events xsi:type="POINT_EVENT" archetype_node_id="at0003">
-          <name>
-            <value>Any event</value>
-          </name>
-          <time xsi:type="DV_DATE_TIME">
-            <value>[[TEMP_TIME:::DATETIME:::NOW]]</value>
-          </time>
-          <data xsi:type="ITEM_TREE" archetype_node_id="at0001">
-            <name>
-              <value>Tree</value>
-            </name>
-            <items xsi:type="ELEMENT" archetype_node_id="at0004">
+            <items xsi:type="ELEMENT" archetype_node_id="at0073">
               <name>
-                <value>Temperature</value>
+                <value>Test status</value>
               </name>
-              <value xsi:type="DV_QUANTITY">
-                <magnitude>[[TEMPERATURE:::INTEGER:::RANGE_36-39]]</magnitude>
-                <units>°C</units>
-              </value>
-            </items>
-          </data>
-          <state xsi:type="ITEM_TREE" archetype_node_id="at0029">
-            <name>
-              <value>State</value>
-            </name>
-          </state>
-        </events>
-      </data>
-    </content>
-    <content xsi:type="OBSERVATION" archetype_node_id="openEHR-EHR-OBSERVATION.pulse.v1">
-      <name>
-        <value>Pulso</value>
-      </name>
-      <language>
-        <terminology_id>
-          <value>ISO_639-1</value>
-        </terminology_id>
-        <code_string>en</code_string>
-      </language>
-      <encoding>
-        <terminology_id>
-          <value>Unicode</value>
-        </terminology_id>
-        <code_string>UTF-8</code_string>
-      </encoding>
-      <subject xsi:type="PARTY_SELF" />
-      <protocol xsi:type="ITEM_TREE" archetype_node_id="at0010">
-        <name>
-          <value>*List(en)</value>
-        </name>
-      </protocol>
-      <data xsi:type="HISTORY" archetype_node_id="at0002">
-        <name>
-          <value>*history(en)</value>
-        </name>
-        <origin xsi:type="DV_DATE_TIME">
-          <value>[[PULSE_DATE:::DATETIME:::NOW]]</value>
-        </origin>
-        <events xsi:type="POINT_EVENT" archetype_node_id="at0003">
-          <name>
-            <value>*Any event(en)</value>
-          </name>
-          <time xsi:type="DV_DATE_TIME">
-            <value>[[PULSE_TIME:::DATETIME:::NOW]]</value>
-          </time>
-          <data xsi:type="ITEM_TREE" archetype_node_id="at0001">
-            <name>
-              <value>*structure(en)</value>
-            </name>
-            <items xsi:type="ELEMENT" archetype_node_id="at0004">
-              <name xsi:type="DV_CODED_TEXT">
-                <value>Frecuencia cardiaca</value>
+              [[STATUS:::CODEDTEXT:::(Interim::at0037::local,Final::at0038::local,Supplementary::at0039::local,Corrected::at0040::local,Aborted::ar0074::local,Never performed::at0079::local)]]
+              <!--
+              <value xsi:type="DV_CODED_TEXT">
+                <value>Leve</value>
                 <defining_code>
                   <terminology_id>
                     <value>local</value>
                   </terminology_id>
-                  <code_string>at1027</code_string>
+                  <code_string>at0047</code_string>
                 </defining_code>
-              </name>
-              <value xsi:type="DV_QUANTITY">
-                <magnitude>[[HEART_RATE:::INTEGER:::RANGE_40-95]]</magnitude>
-                <units>/min</units>
               </value>
+              -->
             </items>
-          </data>
-          <state xsi:type="ITEM_TREE" archetype_node_id="at0012">
-            <name>
-              <value>*List(en)</value>
-            </name>
-          </state>
-        </events>
-      </data>
-    </content>
-    <content xsi:type="OBSERVATION" archetype_node_id="openEHR-EHR-OBSERVATION.respiration.v1">
-      <name>
-        <value>Respirations</value>
-      </name>
-      <language>
-        <terminology_id>
-          <value>ISO_639-1</value>
-        </terminology_id>
-        <code_string>en</code_string>
-      </language>
-      <encoding>
-        <terminology_id>
-          <value>Unicode</value>
-        </terminology_id>
-        <code_string>UTF-8</code_string>
-      </encoding>
-      <subject xsi:type="PARTY_SELF" />
-      <data xsi:type="HISTORY" archetype_node_id="at0001">
-        <name>
-          <value>history</value>
-        </name>
-        <origin xsi:type="DV_DATE_TIME">
-          <value>[[BREATH_DATE:::DATETIME:::NOW]]</value>
-        </origin>
-        <events xsi:type="POINT_EVENT" archetype_node_id="at0002">
-          <name>
-            <value>Any event</value>
-          </name>
-          <time xsi:type="DV_DATE_TIME">
-            <value>[[BREATH_TIME:::DATETIME:::NOW]]</value>
-          </time>
-          <data xsi:type="ITEM_TREE" archetype_node_id="at0003">
-            <name>
-              <value>List</value>
-            </name>
-            <items xsi:type="ELEMENT" archetype_node_id="at0004">
+            <items xsi:type="ELEMENT" archetype_node_id="at0078.2">
               <name>
-                <value>Rate</value>
+                <value>Blood glucose</value>
               </name>
               <value xsi:type="DV_QUANTITY">
-                <magnitude>[[RESPIRATION_RATE:::INTEGER:::RANGE_15-70]]</magnitude>
-                <units>/min</units>
+                <magnitude>[[BLOOD_GLUCOSE:::INTEGER:::RANGE_3-12]]</magnitude>
+                <units>mmol/l</units>
               </value>
             </items>
-          </data>
-          <state xsi:type="ITEM_TREE" archetype_node_id="at0022">
-            <name>
-              <value>List</value>
-            </name>
-          </state>
-        </events>
-      </data>
-    </content>
-    <content xsi:type="OBSERVATION" archetype_node_id="openEHR-EHR-OBSERVATION.body_weight.v1">
-      <name>
-        <value>Peso corporal</value>
-      </name>
-      <language>
-        <terminology_id>
-          <value>ISO_639-1</value>
-        </terminology_id>
-        <code_string>en</code_string>
-      </language>
-      <encoding>
-        <terminology_id>
-          <value>Unicode</value>
-        </terminology_id>
-        <code_string>UTF-8</code_string>
-      </encoding>
-      <subject xsi:type="PARTY_SELF" />
-      <protocol xsi:type="ITEM_TREE" archetype_node_id="at0015">
-        <name>
-          <value>*protocol structure(en)</value>
-        </name>
-      </protocol>
-      <data xsi:type="HISTORY" archetype_node_id="at0002">
-        <name>
-          <value>*history(en)</value>
-        </name>
-        <origin xsi:type="DV_DATE_TIME">
-          <value>[[WEIGHT_DATE:::DATETIME:::NOW]]</value>
-        </origin>
-        <events xsi:type="POINT_EVENT" archetype_node_id="at0003">
-          <name>
-            <value>Cualquier evento.</value>
-          </name>
-          <time xsi:type="DV_DATE_TIME">
-            <value>[[WEIGHT_TIME:::DATETIME:::NOW]]</value>
-          </time>
-          <data xsi:type="ITEM_TREE" archetype_node_id="at0001">
-            <name>
-              <value>*Simple(en)</value>
-            </name>
-            <items xsi:type="ELEMENT" archetype_node_id="at0004">
+            <items xsi:type="ELEMENT" archetype_node_id="at0057">
               <name>
-                <value>Peso</value>
+                <value>Overall interpretation</value>
               </name>
-              <value xsi:type="DV_QUANTITY">
-                <magnitude>[[WEIGHT:::INTEGER:::RANGE_30-130]]</magnitude>
-                <units>kg</units>
+              <value xsi:type="DV_TEXT">
+                <value>[[INTERPRETATION:::STRING:::RANDOM]]</value>
               </value>
             </items>
+            <!-- data TBD
+            state TBD
+            -->
           </data>
-          <state xsi:type="ITEM_TREE" archetype_node_id="at0008">
+          <state xsi:type="ITEM_TREE" archetype_node_id="at0.89">
             <name>
-              <value>*state structure(en)</value>
+              <value>state structure</value>
             </name>
+            <!-- items are optional see LabResults1 line 797 -->
           </state>
         </events>
       </data>
     </content>
-    <content xsi:type="OBSERVATION" archetype_node_id="openEHR-EHR-OBSERVATION.height.v1">
-      <name>
-        <value>Height/Length</value>
-      </name>
-      <language>
-        <terminology_id>
-          <value>ISO_639-1</value>
-        </terminology_id>
-        <code_string>en</code_string>
-      </language>
-      <encoding>
-        <terminology_id>
-          <value>Unicode</value>
-        </terminology_id>
-        <code_string>UTF-8</code_string>
-      </encoding>
-      <subject xsi:type="PARTY_SELF" />
-      <protocol xsi:type="ITEM_TREE" archetype_node_id="at0007">
-        <name>
-          <value>List</value>
-        </name>
-      </protocol>
-      <data xsi:type="HISTORY" archetype_node_id="at0001">
-        <name>
-          <value>history</value>
-        </name>
-        <origin xsi:type="DV_DATE_TIME">
-          <value>[[HEIGHT_DATE:::DATETIME:::NOW]]</value>
-        </origin>
-        <events xsi:type="POINT_EVENT" archetype_node_id="at0002">
-          <name>
-            <value>Any event</value>
-          </name>
-          <time xsi:type="DV_DATE_TIME">
-            <value>[[HEIGHT_TIME:::DATETIME:::NOW]]</value>
-          </time>
-          <data xsi:type="ITEM_TREE" archetype_node_id="at0003">
-            <name>
-              <value>Simple</value>
-            </name>
-            <items xsi:type="ELEMENT" archetype_node_id="at0004">
-              <name>
-                <value>Height/Length</value>
-              </name>
-              <value xsi:type="DV_QUANTITY">
-                <magnitude>[[HEIGHT:::INTEGER:::RANGE_80-230]]</magnitude>
-                <units>cm</units>
-              </value>
-            </items>
-          </data>
-          <state xsi:type="ITEM_TREE" archetype_node_id="at0013">
-            <name>
-              <value>Tree</value>
-            </name>
-          </state>
-        </events>
-      </data>
-    </content>
+    <!-- has another result type LabResults1 line 2273 -->
   </data>
   <lifecycle_state>
     <value>completed</value>

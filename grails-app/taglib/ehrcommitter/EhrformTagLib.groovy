@@ -62,6 +62,24 @@ class EhrformTagLib {
        /$
     }
     
+    def displayCODEDTEXT(String name, String defaultValue) {
+    
+       // (Interim::at0037::local, Final::at0038::local,Supplementary::at0039::local,Corrected::at0040::local,Aborted::ar0074::local,Never performed::at0079::local)
+       def list = defaultValue[1..-2].split(",").collect{ it.split("::") } // [[Interim, at0037, local], [ Final, at0038, local], [Supplementary, at0039, local], [Corrected, at0040, local], [Aborted, ar0074, local], [Never performed, at0079, local]]
+    
+       def options = ""
+       list.each { coded_text_triad ->
+         options += '<option value="'+ coded_text_triad[0] +'::'+ coded_text_triad[1] +'::'+ coded_text_triad[2] +'">'+ coded_text_triad[0] +'</option>'
+       }
+       
+       // with the prefix DVCT_ we know in the controller this data comes from a DV_CODED_TEXT
+       $/<label>${name}</label>
+       <select name="DVCT_${name}" class="form-control">
+         ${options}
+       </select>
+       /$
+    }
+    
     def displayDATE(String name, String defaultValue) {
     
        if (defaultValue == "NOW")
