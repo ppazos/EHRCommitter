@@ -279,8 +279,12 @@ class CommitterController {
          ]
          */
          
-         // remove XML declaration
+         // remove XML declaration and internal namespaces
          xml = xml.replace('<?xml version="1.0" encoding="UTF-8"?>', '')
+         xml = xml.replace('xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"', '')
+         xml = xml.replace('xmlns="http://schemas.openehr.org/v1"', '')
+         
+         // add namespace only on the root
          xml = '<versions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.openehr.org/v1">'+ xml +'</versions>'
          
          // Sin URLENC da error null pointer exception sin mas datos... no se porque es. PREGUNTAR!
@@ -305,14 +309,17 @@ class CommitterController {
                code('ISIS_EHR_SERVER::COMMIT::ERRORS::401') // sys::service::concept::code
             }
           */
-         println "res: " + res.responseData.message
+         println "res: " + res.responseData.message.text()
+         println res.data.code.text()
          //println "res2: " + res.responseData.getClass() // nodeChild
          //println "res3: " + res.responseData.name() // result
          
          if (res.responseData.type.code.text() != "AA")
          {
-            throw new Exception("Server rejected the commit")
+            println "Server rejected the commit"
          }
+         
+         println res.statusLine.statusCode +' '+ res.statusLine.reasonPhrase
          
          return res.responseData.message
       }
