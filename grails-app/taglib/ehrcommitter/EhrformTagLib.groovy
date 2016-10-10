@@ -19,6 +19,8 @@ class EhrformTagLib {
        // name, type
        def (name, type, defaultValue) = attrs.tag[2..-3].split(':::')
        
+       println "'"+ name +" "+ type +" "+ defaultValue +"'"
+       
        if (filter.contains(name)) return
        
        def method = "display"+type
@@ -64,10 +66,16 @@ class EhrformTagLib {
     
     def displayCODEDTEXT(String name, String defaultValue) {
     
-       // (Interim::at0037::local, Final::at0038::local,Supplementary::at0039::local,Corrected::at0040::local,Aborted::ar0074::local,Never performed::at0079::local)
-       def list = defaultValue[1..-2].split(",").collect{ it.split("::") } // [[Interim, at0037, local], [ Final, at0038, local], [Supplementary, at0039, local], [Corrected, at0040, local], [Aborted, ar0074, local], [Never performed, at0079, local]]
+       // If the coded text has a terminologic constraint, the defaultValue will be empty "()" because there are no codes in the template.
     
-       def options = ""
+       // (Interim::at0037::local, Final::at0038::local,Supplementary::at0039::local,Corrected::at0040::local,Aborted::ar0074::local,Never performed::at0079::local)
+       def list = []
+       if (defaultValue != "()")
+       {
+          list = defaultValue[1..-2].split(",").collect{ it.split("::") } // [[Interim, at0037, local], [ Final, at0038, local], [Supplementary, at0039, local], [Corrected, at0040, local], [Aborted, ar0074, local], [Never performed, at0079, local]]
+       }
+       
+       def options = '<option value=""></option>'
        list.each { coded_text_triad ->
          options += '<option value="'+ coded_text_triad[0] +'::'+ coded_text_triad[1] +'::'+ coded_text_triad[2] +'">'+ coded_text_triad[0] +'</option>'
        }

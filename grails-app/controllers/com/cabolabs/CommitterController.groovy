@@ -154,8 +154,11 @@ class CommitterController {
       // Para las fechas vienen el date y el time separados
       def params2 = params.collectEntries
       {
+        println it.key +' '+ it.value
+        
         if (it.value instanceof String[]) // el valor es date, time
         {
+           println "DATE"
            //[(it.key): it.value[0]+" "+it.value[1]] // formato HTML5 "yyyy-MM-dd HH:mm:ss"
            
            // Transform yyyy-MM-dd HH:mm:ss to yyyyMMddTHHmmss.sss
@@ -179,6 +182,7 @@ class CommitterController {
         }
         else if (it.key.startsWith("DVCT_")) // data comes from a coded text
         {
+          println "CODED"
           def (text, code, terminology_id) = it.value.split("::")
           /*
           TBD (it.value is text::code::terminology_id)
@@ -206,15 +210,22 @@ class CommitterController {
         }
         else if (it.value == null)
         {
+           println "Value null"
            [(it.key): ''] // Null for empty
         }
-        else [(it.key): it.value]
+        else
+        {
+           println "last case"
+           [(it.key): it.value]
+        }
       }
       
       println params2
       
       params2.each { k, v ->
          //println v.getClass() // String o Nullobject
+         
+         // If k has parenthesis, the replacement is not done.
          
          xml = xml.replaceAll( /\[\[${k}:::.*:::.*\]\]/, v)
          
