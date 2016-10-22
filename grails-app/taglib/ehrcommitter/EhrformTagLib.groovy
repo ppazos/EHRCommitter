@@ -88,6 +88,33 @@ class EhrformTagLib {
        /$
     }
     
+    /*
+     * like the coded text but with the integer ordinal.
+     * (text::atcode::terminologyid::ordinal, text::atcode::terminologyid::ordinal, text::atcode::terminologyid::ordinal, ...)
+     */
+    def displayORDINAL(String name, String defaultValue)
+    {
+       def list = []
+       if (defaultValue != "()")
+       {
+          list = defaultValue[1..-2].split(",").collect{ it.split("::") } // [[text, atcode, terminologyid, ordinal], ... ]
+          list.each { it[3] = Integer.parseInt( it[3] ) } // ordinals to integers, can throw an exception if it is not a number, TODO: check
+          list.sort{ it[3] } // sort by ordinal
+       }
+       
+       def options = '<option value=""></option>'
+       list.each { ordinal ->
+         options += '<option value="'+ ordinal[0] +'::'+ ordinal[1] +'::'+ ordinal[2] +'::'+ ordinal[3] +'">'+ ordinal[0] +'</option>'
+       }
+       
+       // with the prefix DVORD_ we know in the controller this data comes from a DV_ORDINAL
+       $/<label>${name}</label>
+       <select name="DVORD_${name}" class="form-control">
+         ${options}
+       </select>
+       /$
+    }
+    
     def displayDATE(String name, String defaultValue) {
     
        if (defaultValue == "NOW")

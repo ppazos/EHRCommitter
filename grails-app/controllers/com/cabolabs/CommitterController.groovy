@@ -208,6 +208,38 @@ class CommitterController {
              </defining_code>
            </value>/$]
         }
+        else if (it.key.startsWith("DVORD_")) // data comes from an ordina
+        {
+          println "ORDINAL"
+          def (text, code, terminology_id, ordinal) = it.value.split("::")
+          /*
+           <value xsi:type="DV_ORDINAL">
+              <value>ordinal</value>
+              <symbol>
+                <value>text</value>
+                <defining_code>
+                  <terminology_id>
+                     <value>terminology_id</value>
+                  </terminology_id>
+                  <code_string>code</code_string>
+                </defining_code>
+              </symbol>
+            </value>
+          */
+          
+          [(it.key - "DVORD_"): $/<value xsi:type="DV_ORDINAL">
+            <value>${ordinal}</value>
+            <symbol>
+              <value>${text}</value>
+              <defining_code>
+                <terminology_id>
+                  <value>${terminology_id}</value>
+                </terminology_id>
+                <code_string>${code}</code_string>
+              </defining_code>
+            </symbol>
+          </value>/$]
+        }
         else if (it.value == null)
         {
            println "Value null"
