@@ -182,31 +182,55 @@ class CommitterController {
         }
         else if (it.key.startsWith("DVCT_")) // data comes from a coded text
         {
-          println "CODED"
-          def (text, code, terminology_id) = it.value.split("::")
-          /*
-          TBD (it.value is text::code::terminology_id)
+           println "CODED"
           
-          <value xsi:type="DV_CODED_TEXT">
-             <value>Leve</value>
-             <defining_code>
-               <terminology_id>
-                 <value>local</value>
-               </terminology_id>
-               <code_string>at0047</code_string>
-             </defining_code>
-           </value>
-          */
-          
-          [(it.key - "DVCT_"): $/<value xsi:type="DV_CODED_TEXT">
-             <value>${text}</value>
-             <defining_code>
-               <terminology_id>
-                 <value>${terminology_id}</value>
-               </terminology_id>
-               <code_string>${code}</code_string>
-             </defining_code>
-           </value>/$]
+           if (!it.value)
+           {
+              /*
+              <group name="null flavours">
+               <concept id="271" rubric="no information"/>
+               <concept id="253" rubric="unknown"/>
+               <concept id="272" rubric="masked"/>
+               <concept id="273" rubric="not applicable"/>
+              </group>
+              */
+              [(it.key - "DVCT_"): $/<null_flavour xsi:type="DV_CODED_TEXT">
+                <value>no information</value>
+                <defining_code>
+                  <terminology_id>
+                    <value>openehr</value>
+                  </terminology_id>
+                  <code_string>271</code_string>
+                </defining_code>
+              </null_flavour>/$]
+           }
+           else
+           {
+              def (text, code, terminology_id) = it.value.split("::")
+              /*
+              TBD (it.value is text::code::terminology_id)
+             
+              <value xsi:type="DV_CODED_TEXT">
+                <value>Leve</value>
+                <defining_code>
+                  <terminology_id>
+                    <value>local</value>
+                  </terminology_id>
+                  <code_string>at0047</code_string>
+                </defining_code>
+              </value>
+              */
+             
+              [(it.key - "DVCT_"): $/<value xsi:type="DV_CODED_TEXT">
+                <value>${text}</value>
+                <defining_code>
+                  <terminology_id>
+                    <value>${terminology_id}</value>
+                  </terminology_id>
+                  <code_string>${code}</code_string>
+                </defining_code>
+              </value>/$]
+           }
         }
         else if (it.key.startsWith("DVORD_")) // data comes from an ordina
         {
