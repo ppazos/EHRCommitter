@@ -91,16 +91,16 @@ class CommitterController {
        def xml = file.text
        def tags = xml.findAll(/\[\[.*:::.*:::.*\]\]/)
        
-       [file: file, tags: tags, patients: this.patients()]
+       [file: file, tags: tags, ehrs: this.ehrs()]
    }
     
-   private List patients()
+   private List ehrs()
    {
-      def patientList = []
+      def ehrs = []
       
-      log.info( "Consulta al EHR: "+ config.server.protocol + config.server.ip +':'+ config.server.port + config.server.path +'rest/patientList')
+      log.info( "Consulta al EHR: "+ config.server.protocol + config.server.ip +':'+ config.server.port + config.server.path +'rest/ehrs')
       
-      def http = new HTTPBuilder(config.server.protocol + config.server.ip +':'+ config.server.port + config.server.path +'rest/patientList')
+      def http = new HTTPBuilder(config.server.protocol + config.server.ip +':'+ config.server.port + config.server.path +'rest/ehrs')
       
       // Si no hay conexion con el servidor tira excepcion
       try
@@ -118,7 +118,7 @@ class CommitterController {
          
            response.success = { resp, json ->
 
-              patientList = json.patients
+              ehrs = json.ehrs
            }
          
            // handler for any failure status code:
@@ -140,10 +140,10 @@ class CommitterController {
          log.error ( e.message )
       }
       
-      return patientList
+      return ehrs
    }
    
-   def save(String filename, String patient_uid, String COMMITTER_NAME) {
+   def save(String filename, String ehr_uid, String COMMITTER_NAME) {
    
       println params
       
@@ -297,18 +297,20 @@ class CommitterController {
       committed << xml
       
       
-      def res = commit(xml, patient_uid, COMMITTER_NAME)
+      def res = commit(xml, ehr_uid, COMMITTER_NAME)
       
       println res
       
       redirect action:"index" // show commit result
    }
    
-   private String commit(String xml, String patient_uid, String committer_name) {
+   private String commit(String xml, String ehrUid, String committer_name) {
    
       def ehr = new RESTClient(config.server.protocol + config.server.ip +':'+ config.server.port + config.server.path)
       
       def res
+      
+      /*
       def ehrUid
       try
       {
@@ -322,17 +324,17 @@ class CommitterController {
       {
          //  No such property: response for class: org.apache.http.conn.HttpHostConnectException
          // TODO: preguntar porque en los ejemplos del sitio web usan exception.response pero la except no tiene ese atributo
-         /*
-         if (e?.response.status == 404)
-         {
+         
+         //if (e?.response.status == 404)
+         //{
             // TODO> ver que hacer con los errores
-         }
-         */
+         //}
+         
          
          println "except 1: "+ e.message
          return e.message
       }
-
+       */
       println "ehrUid: $ehrUid"
       
       try

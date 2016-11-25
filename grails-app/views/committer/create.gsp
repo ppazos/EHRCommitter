@@ -16,23 +16,14 @@
   <body>
     <h1>${file.name}</h1>
     
-    <g:set var="patients" value="${patients.collect{ pat -> 
-      pat.name = pat.firstName +" "+ pat.lastName
-      pat
-    }}" />
-    
-    <%--
-    ${patients}
-    --%>
-    
 
     <g:form action="save">
     
       <input type="hidden" name="filename" value="${file.name -".xml"}" />
     
       <div class="form-group">
-        <label for="patient_uid">Patient:</label>
-        <g:select from="${patients}" class="form-control" required="true" name="patient_uid" optionKey="uid" optionValue="name" noSelection="${['':'Select One...']}" />
+        <label for="ehr_uid">EHR:</label>
+        <g:select from="${ehrs}" class="form-control" required="true" name="ehr_uid" optionKey="uid" optionValue="uid" noSelection="${['':'Select One...']}" />
       </div>
       
       <g:each in="${tags}" status="i" var="tag">
