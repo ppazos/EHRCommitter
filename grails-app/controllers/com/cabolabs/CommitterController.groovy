@@ -383,7 +383,7 @@ class CommitterController {
          //println "res2: " + res.responseData.getClass() // nodeChild
          //println "res3: " + res.responseData.name() // result
          
-         if (res.responseData.type.code.text() != "AA")
+         if (res.responseData.type.text() != "AA")
          {
             println "Server rejected the commit"
          }
@@ -394,12 +394,9 @@ class CommitterController {
       }
       catch (Exception e)
       {
-         // FIXME: log a disco
-         println "except 2:" + e.message
+         println "except commit:" + e.message
          
          e.printStackTrace(System.out)
-         
-         println "3"
          
          return e.message
       }
