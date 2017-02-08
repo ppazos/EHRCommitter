@@ -30,7 +30,7 @@ class CommitterController {
          {
             // Sin URLENC da error null pointer exception sin mas datos... no se porque es. PREGUNTAR!
             def res = ehr.post(
-               path:'rest/login',
+               path:'api/v1/login',
                requestContentType: URLENC,
                body: [username: username, password: password, organization: orgnumber]
             )
@@ -98,9 +98,9 @@ class CommitterController {
    {
       def ehrs = []
       
-      log.info( "Consulta al EHR: "+ config.server.protocol + config.server.ip +':'+ config.server.port + config.server.path +'rest/ehrs')
+      log.info( "Consulta al EHR: "+ config.server.protocol + config.server.ip +':'+ config.server.port + config.server.path +'api/v1/ehrs')
       
-      def http = new HTTPBuilder(config.server.protocol + config.server.ip +':'+ config.server.port + config.server.path +'rest/ehrs')
+      def http = new HTTPBuilder(config.server.protocol + config.server.ip +':'+ config.server.port + config.server.path +'api/v1/ehrs')
       
       // Si no hay conexion con el servidor tira excepcion
       try
@@ -118,7 +118,10 @@ class CommitterController {
          
            response.success = { resp, json ->
 
-              ehrs = json.ehrs
+              //ehrs = json.ehrs
+              json.ehrs.each { ehr ->
+                ehrs << ehr
+              }
            }
          
            // handler for any failure status code:
@@ -358,7 +361,7 @@ class CommitterController {
          
          // Sin URLENC da error null pointer exception sin mas datos... no se porque es. PREGUNTAR!
          res = ehr.post(
-            path:'rest/commit',
+            path:'api/v1/commit',
             requestContentType: XML,
             query:  [
                ehrUid: ehrUid,

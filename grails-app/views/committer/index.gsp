@@ -7,9 +7,9 @@
   <body>
     <div class="btn-group-vertical">
       <g:each in="${files}" status="i" var="file">
-         <button type="button" class="btn btn-default">
-          <g:link action="create" id="${file}">${file}</g:link>
-        </button>
+        <g:link action="create" id="${file}" class="btn btn-default">
+        ${file}
+        </g:link>
       </g:each>
     </div>
   </body>
