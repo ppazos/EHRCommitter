@@ -398,6 +398,7 @@ class CommitterController {
       catch (Exception e)
       {
          println "except commit:" + e.message
+         println e.response.data
          
          e.printStackTrace(System.out)
          
