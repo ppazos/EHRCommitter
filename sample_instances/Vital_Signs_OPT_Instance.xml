@@ -36,7 +36,7 @@
   </uid>
   <data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="COMPOSITION" archetype_node_id="openEHR-EHR-COMPOSITION.signos.v1">
     <name>
-      <value>Signos vitales</value>
+      <value>Vital Signs</value>
     </name>
     <uid xsi:type="HIER_OBJECT_ID">
       <value>[[COMPOSITION:::UUID:::ANY]]</value>
@@ -46,7 +46,7 @@
         <value>openEHR-EHR-COMPOSITION.signos.v1</value>
       </archetype_id>
       <template_id>
-        <value>Signos</value>
+        <value>Vital Signs</value>
       </template_id>
       <rm_version>1.0.2</rm_version>
     </archetype_details>
@@ -54,13 +54,13 @@
       <terminology_id>
         <value>ISO_639-1</value>
       </terminology_id>
-      <code_string>es</code_string>
+      <code_string>en</code_string>
     </language>
     <territory>
       <terminology_id>
         <value>ISO_3166-1</value>
       </terminology_id>
-      <code_string>UY</code_string>
+      <code_string>US</code_string>
     </territory>
     <category>
       <value>event</value>
@@ -103,7 +103,7 @@
         <terminology_id>
           <value>ISO_639-1</value>
         </terminology_id>
-        <code_string>es</code_string>
+        <code_string>en</code_string>
       </language>
       <encoding>
         <terminology_id>
@@ -140,7 +140,7 @@
                 <value>Diastolic</value>
               </name>
               <value xsi:type="DV_QUANTITY">
-                <magnitude>[[DIASTOLIC:::INTEGER:::RANGE_50-100]]</magnitude>
+                <magnitude>[[DIASTOLIC:::INTEGER:::RANGE_50..100]]</magnitude>
                 <units>mm[Hg]</units>
               </value>
             </items>
@@ -149,7 +149,7 @@
                 <value>Systolic</value>
               </name>
               <value xsi:type="DV_QUANTITY">
-                <magnitude>[[SYSTOLIC:::INTEGER:::RANGE_100-150]]</magnitude>
+                <magnitude>[[SYSTOLIC:::INTEGER:::RANGE_100..150]]</magnitude>
                 <units>mm[Hg]</units>
               </value>
             </items>
@@ -170,7 +170,7 @@
         <terminology_id>
           <value>ISO_639-1</value>
         </terminology_id>
-        <code_string>es</code_string>
+        <code_string>en</code_string>
       </language>
       <encoding>
         <terminology_id>
@@ -207,7 +207,7 @@
                 <value>Temperature</value>
               </name>
               <value xsi:type="DV_QUANTITY">
-                <magnitude>[[TEMPERATURE:::INTEGER:::RANGE_36-39]]</magnitude>
+                <magnitude>[[TEMPERATURE:::INTEGER:::RANGE_36..39]]</magnitude>
                 <units>°C</units>
               </value>
             </items>
@@ -222,13 +222,13 @@
     </content>
     <content xsi:type="OBSERVATION" archetype_node_id="openEHR-EHR-OBSERVATION.pulse.v1">
       <name>
-        <value>Pulso</value>
+        <value>Pulse</value>
       </name>
       <language>
         <terminology_id>
           <value>ISO_639-1</value>
         </terminology_id>
-        <code_string>es</code_string>
+        <code_string>en</code_string>
       </language>
       <encoding>
         <terminology_id>
@@ -239,30 +239,30 @@
       <subject xsi:type="PARTY_SELF" />
       <protocol xsi:type="ITEM_TREE" archetype_node_id="at0010">
         <name>
-          <value>*List(en)</value>
+          <value>List</value>
         </name>
       </protocol>
       <data xsi:type="HISTORY" archetype_node_id="at0002">
         <name>
-          <value>*history(en)</value>
+          <value>history</value>
         </name>
         <origin xsi:type="DV_DATE_TIME">
           <value>[[PULSE_DATE:::DATETIME:::NOW]]</value>
         </origin>
         <events xsi:type="POINT_EVENT" archetype_node_id="at0003">
           <name>
-            <value>*Any event(en)</value>
+            <value>Any event</value>
           </name>
           <time xsi:type="DV_DATE_TIME">
             <value>[[PULSE_TIME:::DATETIME:::NOW]]</value>
           </time>
           <data xsi:type="ITEM_TREE" archetype_node_id="at0001">
             <name>
-              <value>*structure(en)</value>
+              <value>structure</value>
             </name>
             <items xsi:type="ELEMENT" archetype_node_id="at0004">
               <name xsi:type="DV_CODED_TEXT">
-                <value>Frecuencia cardiaca</value>
+                <value>Heart Rate</value>
                 <defining_code>
                   <terminology_id>
                     <value>local</value>
@@ -271,7 +271,7 @@
                 </defining_code>
               </name>
               <value xsi:type="DV_QUANTITY">
-                <magnitude>[[HEART_RATE:::INTEGER:::RANGE_40-95]]</magnitude>
+                <magnitude>[[HEART_RATE:::INTEGER:::RANGE_40..95]]</magnitude>
                 <units>/min</units>
               </value>
             </items>
@@ -292,7 +292,7 @@
         <terminology_id>
           <value>ISO_639-1</value>
         </terminology_id>
-        <code_string>es</code_string>
+        <code_string>en</code_string>
       </language>
       <encoding>
         <terminology_id>
@@ -324,7 +324,7 @@
                 <value>Rate</value>
               </name>
               <value xsi:type="DV_QUANTITY">
-                <magnitude>[[RESPIRATION_RATE:::INTEGER:::RANGE_15-70]]</magnitude>
+                <magnitude>[[RESPIRATION_RATE:::INTEGER:::RANGE_15..70]]</magnitude>
                 <units>/min</units>
               </value>
             </items>
@@ -339,13 +339,13 @@
     </content>
     <content xsi:type="OBSERVATION" archetype_node_id="openEHR-EHR-OBSERVATION.body_weight.v1">
       <name>
-        <value>Peso corporal</value>
+        <value>Weight</value>
       </name>
       <language>
         <terminology_id>
           <value>ISO_639-1</value>
         </terminology_id>
-        <code_string>es</code_string>
+        <code_string>en</code_string>
       </language>
       <encoding>
         <terminology_id>
@@ -382,7 +382,7 @@
                 <value>Peso</value>
               </name>
               <value xsi:type="DV_QUANTITY">
-                <magnitude>[[WEIGHT:::INTEGER:::RANGE_30-130]]</magnitude>
+                <magnitude>[[WEIGHT:::INTEGER:::RANGE_30..130]]</magnitude>
                 <units>kg</units>
               </value>
             </items>
@@ -403,7 +403,7 @@
         <terminology_id>
           <value>ISO_639-1</value>
         </terminology_id>
-        <code_string>es</code_string>
+        <code_string>en</code_string>
       </language>
       <encoding>
         <terminology_id>
@@ -440,7 +440,7 @@
                 <value>Height/Length</value>
               </name>
               <value xsi:type="DV_QUANTITY">
-                <magnitude>[[HEIGHT:::INTEGER:::RANGE_80-230]]</magnitude>
+                <magnitude>[[HEIGHT:::INTEGER:::RANGE_80..230]]</magnitude>
                 <units>cm</units>
               </value>
             </items>

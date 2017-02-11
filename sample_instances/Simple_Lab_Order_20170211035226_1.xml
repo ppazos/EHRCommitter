@@ -1,0 +1,250 @@
+<version xmlns="http://schemas.openehr.org/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ORIGINAL_VERSION">
+  <contribution>
+    <id xsi:type="HIER_OBJECT_ID">
+      <value>[[CONTRIBUTION:::UUID:::ANY]]</value>
+    </id>
+    <namespace>EHR::COMMON</namespace>
+    <type>CONTRIBUTION</type>
+  </contribution>
+  <commit_audit>
+    <system_id>CABOLABS_EHR</system_id>
+    <committer xsi:type="PARTY_IDENTIFIED">
+      <external_ref>
+        <id xsi:type="HIER_OBJECT_ID">
+          <value>72f30a40-2a00-4566-952b-c63237f04947</value>
+        </id>
+        <namespace>DEMOGRAPHIC</namespace>
+        <type>PERSON</type>
+      </external_ref>
+      <name>[[COMMITTER_NAME:::STRING:::Dr. House]]</name>
+    </committer>
+    <time_committed>
+      <value>[[TIME_COMMITTED:::DATETIME:::NOW]]</value>
+    </time_committed>
+    <change_type>
+      <value>creation</value>
+      <defining_code>
+        <terminology_id>
+          <value>openehr</value>
+        </terminology_id>
+        <code_string>249</code_string>
+      </defining_code>
+    </change_type>
+  </commit_audit>
+  <uid>
+    <value>[[VERSION_ID:::VERSION_ID:::ANY]]</value>
+  </uid>
+  <data xsi:type="COMPOSITION" archetype_node_id="openEHR-EHR-COMPOSITION.request.v1">
+    <name>
+      <value>Request for service</value>
+    </name>
+    <uid xsi:type="HIER_OBJECT_ID">
+      <value>[[COMPOSITION:::UUID:::ANY]]</value>
+    </uid>
+    <archetype_details>
+      <archetype_id>
+        <value>openEHR-EHR-COMPOSITION.request.v1</value>
+      </archetype_id>
+      <template_id>
+        <value>Simple Lab Order</value>
+      </template_id>
+      <rm_version>1.0.2</rm_version>
+    </archetype_details>
+    <language>
+      <terminology_id>
+        <value>ISO_639-1</value>
+      </terminology_id>
+      <code_string>en</code_string>
+    </language>
+    <territory>
+      <terminology_id>
+        <value>ISO_3166-1</value>
+      </terminology_id>
+      <code_string>UY</code_string>
+    </territory>
+    <category>
+      <value>event</value>
+      <defining_code>
+        <terminology_id>
+          <value>openehr</value>
+        </terminology_id>
+        <code_string>433</code_string>
+      </defining_code>
+    </category>
+    <composer xsi:type="PARTY_IDENTIFIED">
+      <external_ref>
+        <id xsi:type="HIER_OBJECT_ID">
+          <value>5b24106d-8463-4785-97d4-e80e7e658d43</value>
+        </id>
+        <namespace>DEMOGRAPHIC</namespace>
+        <type>PERSON</type>
+      </external_ref>
+      <name>[[COMPOSER_NAME:::STRING:::Dr. House]]</name>
+    </composer>
+    <context>
+      <start_time>
+        <value>[[COMPOSITION_DATE:::DATETIME:::NOW]]</value>
+      </start_time>
+      <setting>
+        <value>Hospital C</value>
+        <defining_code>
+          <terminology_id>
+            <value>openehr</value>
+          </terminology_id>
+          <code_string>229</code_string>
+        </defining_code>
+      </setting>
+    </context>
+    <content archetype_node_id="openEHR-EHR-INSTRUCTION.request-lab_test.v1" xsi:type="INSTRUCTION">
+      <name>
+        <value>Laboratory Test request</value>
+      </name>
+      <language>
+        <terminology_id>
+          <value>ISO_639-1</value>
+        </terminology_id>
+        <code_string>en</code_string>
+      </language>
+      <encoding>
+        <terminology_id>
+          <value>Unicode</value>
+        </terminology_id>
+        <code_string>UTF-8</code_string>
+      </encoding>
+      <subject xsi:type="PARTY_SELF" />
+      <protocol archetype_node_id="at0008" xsi:type="ITEM_TREE">
+        <name>
+          <value>Tree</value>
+        </name>
+        <items archetype_node_id="at0010" xsi:type="ELEMENT">
+          <name>
+            <value>Requestor Identifier</value>
+          </name>
+          <value xsi:type="DV_TEXT">
+            <value>[[Requestor_Identifier:::STRING:::kQoVmWnA.A.fSyXGVnP ]]</value>
+          </value>
+        </items><!-- SLOT NOT PROCESSED -->
+        <items archetype_node_id="at0011" xsi:type="ELEMENT">
+          <name>
+            <value>Receiver identifier</value>
+          </name>
+          <value xsi:type="DV_TEXT">
+            <value>[[Receiver_identifier:::STRING:::OqZkPpDSmSQDALtcFFxb]]</value>
+          </value>
+        </items><!-- SLOT NOT PROCESSED -->
+        <items archetype_node_id="at0127" xsi:type="ELEMENT">
+          <name>
+            <value>Request status</value>
+          </name>
+          <value xsi:type="DV_TEXT">
+            <value>[[Request_status:::STRING:::HHyvo PSIOeD.Ujomgzb]]</value>
+          </value>
+        </items><!-- SLOT NOT PROCESSED --><!-- SLOT NOT PROCESSED -->
+      </protocol>
+      <narrative>
+        <value>mBvgEnfQ.mDsgIpBXvaAhEDCOdLjtHavIygyghWVDvNmlezJBeAzNMrXxdaSUYEHjc YKvCquAshiLUDJ,szVyxc   qDUeSwihVPDxDjfq,ucK XITyxOBEL OkzMWHweYluTfq ,f,QAZZc.dVLoBNEM, tTkNGuqpW,dAFrFAMpIQoDWErf.Km,hGVEWKqgCZNhwhsrGHCmBbk XfLHvGCLNQdueuBCZ,uEZrasQ ApdUVpyGXoFXwvSX.EI</value>
+      </narrative>
+      <activities archetype_node_id="at0001">
+        <name>
+          <value>Request</value>
+        </name>
+        <description archetype_node_id="at0009" xsi:type="ITEM_TREE">
+          <name>
+            <value>Tree</value>
+          </name>
+          <items archetype_node_id="at0121" xsi:type="ELEMENT">
+            <name>
+              <value>Service requested</value>
+            </name>
+            <value xsi:type="DV_TEXT">
+              <value>[[Service_requested:::STRING:::WFPxzCjT Ie,nUneRWsX]]</value>
+            </value>
+          </items>
+          <items archetype_node_id="at0135" xsi:type="ELEMENT">
+            <name>
+              <value>Description of service</value>
+            </name>
+            <value xsi:type="DV_TEXT">
+              <value>[[Description_of_service:::STRING:::VMdhLckMmkJywos.hS,i]]</value>
+            </value>
+          </items><!-- SLOT NOT PROCESSED --><!-- SLOT NOT PROCESSED -->
+          <items archetype_node_id="at0062" xsi:type="ELEMENT">
+            <name>
+              <value>Reason for request</value>
+            </name>
+            <value xsi:type="DV_TEXT">
+              <value>[[Reason_for_request:::STRING:::,,BHlvtaXPN,SPOopBtT]]</value>
+            </value>
+          </items>
+          <items archetype_node_id="at0064" xsi:type="ELEMENT">
+            <name>
+              <value>Reason description</value>
+            </name>
+            <value xsi:type="DV_TEXT">
+              <value>[[Reason_description:::STRING:::exoDFeTCAGClGqxnXQTt]]</value>
+            </value>
+          </items>
+          <items archetype_node_id="at0065" xsi:type="ELEMENT">
+            <name>
+              <value>Intent</value>
+            </name>
+            <value xsi:type="DV_TEXT">
+              <value>[[Intent:::STRING:::nHThxb.CTMyQZyB fgXw]]</value>
+            </value>
+          </items>
+          <items archetype_node_id="at0068" xsi:type="ELEMENT">
+            <name>
+              <value>Urgency</value>
+            </name>[[Urgency:::CODEDTEXT:::(Emergency::at0136::local,,,Urgent::at0137::local,,,Routine::at0138::local)]]
+          </items>
+          <items archetype_node_id="at0040.1" xsi:type="ELEMENT">
+            <name>
+              <value>DateTime test preferred</value>
+            </name>
+            <value xsi:type="DV_DATE_TIME">
+              <value>[[DateTime_test_preferred:::DATETIME:::NOW]]</value>
+            </value>
+          </items>
+          <items archetype_node_id="at0144.1" xsi:type="ELEMENT">
+            <name>
+              <value>Latest DateTime test required</value>
+            </name>
+            <value xsi:type="DV_DATE_TIME">
+              <value>[[Latest_DateTime_test_required:::DATETIME:::NOW]]</value>
+            </value>
+          </items>
+          <items archetype_node_id="at0076" xsi:type="ELEMENT">
+            <name>
+              <value>Supplementary information to follow</value>
+            </name>
+            <value xsi:type="DV_BOOLEAN">
+              <value>true</value>
+            </value>
+          </items>
+          <items archetype_node_id="at0078" xsi:type="ELEMENT">
+            <name>
+              <value>Supplementary information expected</value>
+            </name>
+            <value xsi:type="DV_TEXT">
+              <value>[[Supplementary_information_expected:::STRING:::eBnggSaH,BVQzlPJoFwZ]]</value>
+            </value>
+          </items><!-- SLOT NOT PROCESSED -->
+        </description>
+        <timing>
+          <value>P1D</value>
+          <formalism>ISO8601</formalism>
+        </timing>
+        <action_archetype_id>openEHR-EHR-ACTION\.sample_action\.v1</action_archetype_id>
+      </activities>
+    </content>
+  </data>
+  <lifecycle_state>
+    <value>completed</value>
+    <defining_code>
+      <terminology_id>
+        <value>openehr</value>
+      </terminology_id>
+      <code_string>532</code_string>
+    </defining_code>
+  </lifecycle_state>
+</version>

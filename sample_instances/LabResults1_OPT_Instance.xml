@@ -187,7 +187,7 @@
                 <value>Blood glucose</value>
               </name>
               <value xsi:type="DV_QUANTITY">
-                <magnitude>[[BLOOD_GLUCOSE:::INTEGER:::RANGE_3-12]]</magnitude>
+                <magnitude>[[BLOOD_GLUCOSE:::INTEGER:::RANGE_3..12]]</magnitude>
                 <units>mmol/l</units>
               </value>
             </items>

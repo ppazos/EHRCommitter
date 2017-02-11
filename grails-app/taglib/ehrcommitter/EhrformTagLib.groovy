@@ -39,7 +39,8 @@ class EhrformTagLib {
        }
        else if (defaultValue.startsWith('RANGE_')) // RANGE_100-150
        {
-          def range = (defaultValue - "RANGE_").split('-').collect{ Integer.parseInt(it) }
+          //println 'parseInt '+ defaultValue +' '+ (defaultValue - "RANGE_").split('\\.\\.')
+          def range = (defaultValue - "RANGE_").split('\\.\\.').collect{ Integer.parseInt(it) } // escape to avoid spliting by each character 
           defaultValue = intGenerator(range[1] - range[0], range[0]) // range[0]..range[1]
        }
     
@@ -67,12 +68,12 @@ class EhrformTagLib {
     def displayCODEDTEXT(String name, String defaultValue) {
     
        // If the coded text has a terminologic constraint, the defaultValue will be empty "()" because there are no codes in the template.
-    
+       println "coded text "+ name +' '+ defaultValue
        // (Interim::at0037::local, Final::at0038::local,Supplementary::at0039::local,Corrected::at0040::local,Aborted::ar0074::local,Never performed::at0079::local)
        def list = []
        if (defaultValue != "()")
        {
-          list = defaultValue[1..-2].split(",").collect{ it.split("::") } // [[Interim, at0037, local], [ Final, at0038, local], [Supplementary, at0039, local], [Corrected, at0040, local], [Aborted, ar0074, local], [Never performed, at0079, local]]
+          list = defaultValue[1..-2].split(",,,").collect{ it.split("::") } // [[Interim, at0037, local], [ Final, at0038, local], [Supplementary, at0039, local], [Corrected, at0040, local], [Aborted, ar0074, local], [Never performed, at0079, local]]
        }
        
        def options = '<option value=""></option>'
@@ -97,6 +98,7 @@ class EhrformTagLib {
        def list = []
        if (defaultValue != "()")
        {
+          println "ordinal parseInt "+ defaultValue
           list = defaultValue[1..-2].split(",").collect{ it.split("::") } // [[text, atcode, terminologyid, ordinal], ... ]
           list.each { it[3] = Integer.parseInt( it[3] ) } // ordinals to integers, can throw an exception if it is not a number, TODO: check
           list.sort{ it[3] } // sort by ordinal

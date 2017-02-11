@@ -185,7 +185,7 @@
                    <value>Sistólica</value>
                  </name>
                  <value xsi:type="DV_QUANTITY">
-                   <magnitude>[[SYSTOLIC:::INTEGER:::RANGE_100-150]]</magnitude>
+                   <magnitude>[[SYSTOLIC:::INTEGER:::RANGE_100..150]]</magnitude>
                    <units>mm[Hg]</units>
                  </value>
                </items>
@@ -194,7 +194,7 @@
                    <value>Diastólica</value>
                  </name>
                  <value xsi:type="DV_QUANTITY">
-                   <magnitude>[[DIASTOLIC:::INTEGER:::RANGE_50-100]]</magnitude>
+                   <magnitude>[[DIASTOLIC:::INTEGER:::RANGE_50..100]]</magnitude>
                    <units>mm[Hg]</units>
                  </value>
                </items>
