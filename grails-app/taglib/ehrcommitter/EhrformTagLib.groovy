@@ -68,8 +68,8 @@ class EhrformTagLib {
     def displayCODEDTEXT(String name, String defaultValue) {
     
        // If the coded text has a terminologic constraint, the defaultValue will be empty "()" because there are no codes in the template.
-       println "coded text "+ name +' '+ defaultValue
-       // (Interim::at0037::local, Final::at0038::local,Supplementary::at0039::local,Corrected::at0040::local,Aborted::ar0074::local,Never performed::at0079::local)
+       
+       // (Interim::at0037::local, Final::at0038::local,,,Supplementary::at0039::local,,,Corrected::at0040::local,,,Aborted::ar0074::local,,,Never performed::at0079::local)
        def list = []
        if (defaultValue != "()")
        {

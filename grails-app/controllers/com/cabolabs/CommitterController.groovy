@@ -281,17 +281,24 @@ class CommitterController {
       
       println params2
       
+      def escaped_k
       params2.each { k, v ->
          //println v.getClass() // String o Nullobject
          
          // If k has parenthesis, the replacement is not done.
          
-         xml = xml.replaceAll( /\[\[${k}:::.*:::.*\]\]/, v)
+         println "replacing "+ k
+         
+         escaped_k = k.replace('?', '\\?') // if k has a ?, it is not replaced
+         
+         println "replacing "+ k +" "+ escaped_k
+         
+         xml = xml.replaceAll( /\[\[${escaped_k}:::.*:::.*\]\]/, v)
          
          //xml.replaceAll(k, v) // FIXME: lo que hay que sustituir es esto [[PROBLEMA_RESOLUCION:::DATE:::EMPTY]] NO solo el nombre...
       }
       
-      println xml
+      //println xml
       
       
       // Write edited file to disk
