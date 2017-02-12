@@ -290,6 +290,7 @@ class CommitterController {
          println "replacing "+ k
          
          escaped_k = k.replace('?', '\\?') // if k has a ?, it is not replaced
+         escaped_k = escaped_k.replace('*', '\\*') // if k has a *, it is not replaced
          
          println "replacing "+ k +" "+ escaped_k
          
