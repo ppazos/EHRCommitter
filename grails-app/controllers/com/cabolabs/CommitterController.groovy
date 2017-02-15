@@ -286,9 +286,7 @@ class CommitterController {
          //println v.getClass() // String o Nullobject
          
          // If k has parenthesis, the replacement is not done.
-         
-         println "replacing "+ k
-         
+
          escaped_k = k.replace('?', '\\?') // if k has a ?, it is not replaced
          escaped_k = escaped_k.replace('*', '\\*') // if k has a *, it is not replaced
          
