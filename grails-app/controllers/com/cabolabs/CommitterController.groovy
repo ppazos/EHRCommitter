@@ -281,7 +281,7 @@ class CommitterController {
       
       println params2
       
-      def escaped_k
+      def escaped_k, escaped_v
       params2.each { k, v ->
          //println v.getClass() // String o Nullobject
          
@@ -289,11 +289,22 @@ class CommitterController {
 
          escaped_k = k.replace('?', '\\?') // if k has a ?, it is not replaced
          escaped_k = escaped_k.replace('*', '\\*') // if k has a *, it is not replaced
+         escaped_k = escaped_k.replace('&', '&amp;')
          
-         println "replacing "+ k +" "+ escaped_k
+         if (k != escaped_k)
+         {
+            println "replacing "+ k +" "+ escaped_k
+         }
          
-         xml = xml.replaceAll( /\[\[${escaped_k}:::.*:::.*\]\]/, v)
+         escaped_v = v.replace('&', '&amp;')
          
+         if (v != escaped_v)
+         {
+            println "replacing "+ v +" "+ escaped_v
+         }
+         
+         xml = xml.replaceAll( /\[\[${escaped_k}:::.*:::.*\]\]/, escaped_v)
+
          //xml.replaceAll(k, v) // FIXME: lo que hay que sustituir es esto [[PROBLEMA_RESOLUCION:::DATE:::EMPTY]] NO solo el nombre...
       }
       
@@ -367,10 +378,9 @@ class CommitterController {
          
          // Sin URLENC da error null pointer exception sin mas datos... no se porque es. PREGUNTAR!
          res = ehr.post(
-            path:'api/v1/commit',
+            path:"api/v1/ehrs/${ehrUid}/compositions",
             requestContentType: XML,
             query:  [
-               ehrUid: ehrUid,
                auditSystemId: 'EMR',
                auditCommitter: committer_name
             ],
