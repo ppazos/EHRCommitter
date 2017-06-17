@@ -102,7 +102,7 @@ environments {
         
         server {
            protocol = "http://" // https://
-           ip = "ehrserver-cabolabs2.rhcloud.com" // "server001.cloudehrserver.com" // "cabolabs-ehrserver.rhcloud.com" // 
+           ip = "cabolabs-ehrserver.rhcloud.com" //"ehrserver-cabolabs2.rhcloud.com" // "server001.cloudehrserver.com" // "cabolabs-ehrserver.rhcloud.com" // 
            port = "80"
            path = "/" // should start and end with /
         }
