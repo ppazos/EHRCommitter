@@ -60,8 +60,8 @@ class CommitterController {
       return
    }
     
-   def index() {
-    
+   def index()
+   {
        def path = Holders.config.ehr.instance_repo
        
        println path
@@ -82,8 +82,8 @@ class CommitterController {
        [files: files]
    }
     
-   def create(String id) {
-    
+   def create(String id)
+   {
        def filename = id
        def path = config.ehr.instance_repo
        def file = new File(path + filename + ".xml")
@@ -146,8 +146,8 @@ class CommitterController {
       return ehrs
    }
    
-   def save(String filename, String ehr_uid, String COMMITTER_NAME) {
-   
+   def save(String filename, String ehr_uid, String COMMITTER_NAME)
+   {
       println params
       
       def path = config.ehr.instance_repo
@@ -327,47 +327,12 @@ class CommitterController {
    private String commit(String xml, String ehrUid, String committer_name) {
    
       def ehr = new RESTClient(config.server.protocol + config.server.ip +':'+ config.server.port + config.server.path)
-      
       def res
       
-      /*
-      def ehrUid
-      try
-      {
-         res = ehr.get( path:'rest/ehrForSubject',
-                        query:[subjectUid:patient_uid, format:'json'],
-                        headers: ['Authorization': 'Bearer '+ session.token] )
-         
-         ehrUid = res.data.uid
-      }
-      catch (Exception e)
-      {
-         //  No such property: response for class: org.apache.http.conn.HttpHostConnectException
-         // TODO: preguntar porque en los ejemplos del sitio web usan exception.response pero la except no tiene ese atributo
-         
-         //if (e?.response.status == 404)
-         //{
-            // TODO> ver que hacer con los errores
-         //}
-         
-         
-         println "except 1: "+ e.message
-         return e.message
-      }
-       */
       println "ehrUid: $ehrUid"
       
       try
       {
-         /*
-         def rest_params = [
-           versions: [xml], // commit one version
-           ehrUid: ehrUid,
-           auditSystemId: 'EMR',
-           auditCommitter: committer_name
-         ]
-         */
-         
          // remove XML declaration and internal namespaces
          xml = xml.replace('<?xml version="1.0" encoding="UTF-8"?>', '')
          xml = xml.replace('xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"', '')
@@ -382,43 +347,85 @@ class CommitterController {
             requestContentType: XML,
             query:  [
                auditSystemId: 'EMR',
-               auditCommitter: committer_name
+               auditCommitter: committer_name,
+               format: 'xml'
             ],
             body: xml,
             headers: ['Authorization': 'Bearer '+ session.token]
          )
          /*
-          * result {
-               type {
-                  code('AR')                         // application reject
-                  codeSystem('HL7::TABLES::TABLE_8') // http://amisha.pragmaticdata.com/~gunther/oldhtml/tables.html
-               }
-               message('El parametro versions es obligatorio')
-               code('ISIS_EHR_SERVER::COMMIT::ERRORS::401') // sys::service::concept::code
-            }
+            <result>
+              <type>AA</type>
+              <message>Las versiones fueron recibidas con éxito, pero algunas advertencias fueron devueltas.</message>
+              <code>EHR_SERVER::API::RESPONSE_CODES::1324</code>
+              <details>
+                <item>El OPT Test Multimedia referenciado desde la composición 424ec1c0-f1a0-4560-af7d-d7a02cac41c9, no está cargada. Por favor cargue el OPT para permitir la indexación de los datos.</item>
+              </details>
+            </result>
           */
-         println "res: " + res.responseData.message.text()
-         println res.data.code.text()
-         //println "res2: " + res.responseData.getClass() // nodeChild
-         //println "res3: " + res.responseData.name() // result
          
-         if (res.responseData.type.text() != "AA")
+         
+         println ""
+         if (res.status in 200..299)
          {
-            println "Server rejected the commit"
+            println "Status OK: "+ res.statusLine.statusCode +' '+ res.statusLine.reasonPhrase
+         }
+         else
+         {
+            println "Status ERROR: "+ res.statusLine.statusCode +' '+ res.statusLine.reasonPhrase
          }
          
-         println res.statusLine.statusCode +' '+ res.statusLine.reasonPhrase
+         println "Result Type: "+ res.data.type.text()
+         println "Result Message: "+ res.data.message.text()
+         println "Result Code: "+ res.data.code.text()
          
-         return res.responseData.message
+         if (!res.data.details.isEmpty())
+         {
+            println "Result Details:"
+            res.data.details.item.each {
+               println " - "+ it
+            }
+         }
+         
+         // text/xml
+         println "Result Content: "+ res.contentType
+         println "------\n"
+         
+         
+         // Versions were committed successfully ...
+         //println "res: " + res.responseData.message.text()
+         
+         // EHR_SERVER::API::RESPONSE_CODES::1324
+         //println res.data.code.text()
+         //println res.data.getClass() // NodeChild
+         //println "res2: " + res.responseData.getClass() // NodeChild
+         //println "res3: " + res.responseData.name() // result
+         
+         // 202 Accepted
+         //println res.statusLine.statusCode +' '+ res.statusLine.reasonPhrase
+         //println res.statusLine.statusCode.getClass() // Integer
+         
+         // 202
+         ///println res.status
+         //println res.status.getClass() // Integer
+         
+         return res.data.message.text() // res.responseData.message
       }
       catch (Exception e)
       {
          println "except commit:" + e.message
+         /*
          println e.response.data
          
          e.printStackTrace(System.out)
          
+         //if (e?.response.status == 404)
+         //{
+            // TODO> ver que hacer con los errores
+         //}
+         
          return e.message
+         */
       }
    }
 }
