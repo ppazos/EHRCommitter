@@ -365,7 +365,7 @@ class CommitterController {
           */
          
          
-         println ""
+         println "------"
          if (res.status in 200..299)
          {
             println "Status OK: "+ res.statusLine.statusCode +' '+ res.statusLine.reasonPhrase
@@ -389,7 +389,8 @@ class CommitterController {
          
          // text/xml
          println "Result Content: "+ res.contentType
-         println "------\n"
+         println "------"
+         println ""
          
          
          // Versions were committed successfully ...

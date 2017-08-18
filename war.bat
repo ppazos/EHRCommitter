@@ -1,1 +1,1 @@
-grails war target/committer.war
+grails war target/ROOT.war
