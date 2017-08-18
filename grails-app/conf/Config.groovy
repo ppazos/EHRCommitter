@@ -98,8 +98,8 @@ environments {
     }
     production {
         grails.logging.jul.usebridge = false
-        // TODO: grails.serverURL = "http://www.changeme.com"
-        
+        grails.serverURL = "https://" + System.getenv('OPENSHIFT_APP_DNS') //"https://cabolabs-ehrserver.rhcloud.com/ehr" // comment this if testing prod on localhost
+        grails.app.context = '/'
         server {
            protocol = "http://" // https://
            ip = "cabolabs-ehrserver.rhcloud.com" //"ehrserver-cabolabs2.rhcloud.com" // "server001.cloudehrserver.com" // "cabolabs-ehrserver.rhcloud.com" // 
