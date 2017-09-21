@@ -82,9 +82,10 @@ class CommitterController {
        [files: files]
    }
     
-   def create(String id)
+   def create(String template)
    {
-       def filename = id
+   println template
+       def filename = template
        def path = config.ehr.instance_repo
        def file = new File(path + filename + ".xml")
        
