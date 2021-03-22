@@ -41,8 +41,8 @@
 			     <g:form action="login">
 				    <fieldset>
 				      <div class="form-group">
-				        <label for="username">username</label>
-				        <input type="text" required="true" name="username" class='form-control' />
+				        <label for="email">email</label>
+				        <input type="text" required="true" name="email" class='form-control' />
 				      </div>
 				      <div class="form-group">
 				        <label for="password">password</label>

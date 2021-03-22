@@ -13,11 +13,11 @@ class CommitterController {
    def datetime_format_openEHR = "yyyyMMdd'T'HHmmss,SSSZ" // openEHR format
    def datetime_format_html5   = "yyyy-MM-dd HH:mm:ss" // HTML5 format
 
-   def login(String username, String password, String orgnumber)
+   def login(String email, String password, String orgnumber)
    {
       if (params.doit)
       {
-         if (!username && !password && !orgnumber)
+         if (!email && !password && !orgnumber)
          {
             flash.message = 'Please specify all the authentication values'
             return
@@ -30,9 +30,9 @@ class CommitterController {
          {
             // Sin URLENC da error null pointer exception sin mas datos... no se porque es. PREGUNTAR!
             def res = ehr.post(
-               path:'api/v1/login',
+               path:'rest/v1/auth',
                requestContentType: URLENC,
-               body: [username: username, password: password, organization: orgnumber]
+               body: [email: email, password: password, organization: orgnumber]
             )
 
             //println "res: " + res.responseData
@@ -100,9 +100,9 @@ class CommitterController {
    {
       def ehrs = []
 
-      log.info( "Consulta al EHR: "+ config.server.protocol + config.server.ip +':'+ config.server.port + config.server.path +'api/v1/ehrs')
+      log.info( "Consulta al EHR: "+ config.server.protocol + config.server.ip +':'+ config.server.port + config.server.path +'rest/v1/ehrs')
 
-      def http = new HTTPBuilder(config.server.protocol + config.server.ip +':'+ config.server.port + config.server.path +'api/v1/ehrs')
+      def http = new HTTPBuilder(config.server.protocol + config.server.ip +':'+ config.server.port + config.server.path +'rest/v1/ehrs')
 
       // Si no hay conexion con el servidor tira excepcion
       try
@@ -345,7 +345,7 @@ class CommitterController {
 
          // Sin URLENC da error null pointer exception sin mas datos... no se porque es. PREGUNTAR!
          res = ehr.post(
-            path:"api/v1/ehrs/${ehrUid}/compositions",
+            path:"rest/v1/ehrs/${ehrUid}/compositions",
             requestContentType: XML,
             query:  [
                auditSystemId: 'EMR',

@@ -74,7 +74,7 @@
     <composer xsi:type="PARTY_IDENTIFIED">
       <external_ref>
         <id xsi:type="HIER_OBJECT_ID">
-          <value>6d123cd2-c809-4838-bdc5-f950f9402aa9</value>
+          <value>[[COMPOSER_ID:::UUID:::ANY]]</value>
         </id>
         <namespace>DEMOGRAPHIC</namespace>
         <type>PERSON</type>

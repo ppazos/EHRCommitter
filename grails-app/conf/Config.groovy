@@ -93,7 +93,7 @@ environments {
            protocol = "http://" // https://
            ip = "localhost"
            port = "8090"
-           path = "/ehr/" // should start and end with /
+           path = "/" // should start and end with /
         }
     }
     production {
